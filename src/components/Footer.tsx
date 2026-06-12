@@ -6,7 +6,7 @@ import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
 const allLinks = [
   { label: "Features", href: "#features" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Pricing", href: "/pricing" },
   { label: "How It Works", href: "#how" },
   { label: "Get a Demo", href: "#demo" },
   { label: "FAQ", href: "#faq" },

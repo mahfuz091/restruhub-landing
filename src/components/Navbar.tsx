@@ -6,7 +6,7 @@ const NAV_LINKS = [
   { label: "Home", href: "#" },
   { label: "Features", href: "#features" },
   { label: "Pricing", href: "pricing" },
-  { label: "Resource", href: "#resource" },
+  { label: "Resource", href: "blog" },
 ];
 
 export default function Navbar() {
