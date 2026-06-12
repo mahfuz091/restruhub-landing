@@ -1,0 +1,280 @@
+@import "tailwindcss";
+
+:root {
+  --color-ink: #001f0f;
+  --color-ink-soft: #2b2d2c;
+  --color-brand: #00b67a;
+  --color-brand-deep: #005128;
+  --color-accent: #ee6a1f;
+  --color-warning: #ffbf0f;
+  --color-mute: #6b7570;
+  --color-line: #e2e2e2;
+  --color-card: #ffffff;
+  --color-surface: #f6f7f5;
+}
+
+@theme inline {
+  --font-sans: var(--font-poppins);
+  --font-display: var(--font-radio-canada-big);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-brand: var(--color-brand);
+  --color-brand-deep: var(--color-brand-deep);
+  --color-accent: var(--color-accent);
+  --color-warning: var(--color-warning);
+  --color-mute: var(--color-mute);
+  --color-line: var(--color-line);
+  --color-card: var(--color-card);
+  --color-surface: var(--color-surface);
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+}
+
+.hero-band {
+  background-image: radial-gradient(
+      60% 80% at 50% 100%,
+      rgba(0, 182, 122, 0.16) 0%,
+      rgba(0, 182, 122, 0) 70%
+    ),
+    radial-gradient(
+      55% 65% at 15% 95%,
+      rgba(255, 191, 15, 0.18) 0%,
+      rgba(255, 191, 15, 0) 70%
+    );
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: top center;
+}
+
+@media (min-width: 1024px) {
+  .hero-band {
+    background-image: url("/images/hero-bg.jpg");
+    background-size: 100% auto;
+    background-position: center top 50px;
+    background-repeat: no-repeat;
+  }
+}
+
+
+/* ROI calculator slider */
+.calc-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(
+    to right,
+    #009f6b 0%,
+    #009f6b var(--val, 50%),
+    rgba(255, 255, 255, 0.6) var(--val, 50%),
+    rgba(255, 255, 255, 0.6) 100%
+  );
+  outline: none;
+  cursor: pointer;
+}
+
+.calc-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #009f6b;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(0, 31, 15, 0.25);
+  cursor: grab;
+  transition: transform 0.15s ease;
+}
+
+.calc-slider::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.15);
+}
+
+.calc-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #009f6b;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(0, 31, 15, 0.25);
+  cursor: grab;
+}
+
+/* Steps swiper pagination */
+.steps-swiper .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: #d9d9d9;
+  opacity: 1;
+  transition: background 0.3s ease;
+}
+
+.steps-swiper .swiper-pagination-bullet-active {
+  background: var(--color-brand-deep);
+}
+
+/* Pricing table scroll */
+.pricing-scroll {
+  scrollbar-width: none;
+}
+.pricing-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Review section cards — hover bg swap */
+.review-card {
+  transition: background-image 0.3s ease;
+}
+
+.review-card:hover {
+  background-image: url("/images/review-section/review-hover-bg.png") !important;
+}
+
+/* ── CTA buttons — Calypso-style circular fill + text bounce ── */
+@keyframes MoveScaleUpInitial {
+  to {
+    transform: translate3d(0, -105%, 0) scale3d(1, 2, 1);
+    opacity: 0;
+  }
+}
+
+@keyframes MoveScaleUpEnd {
+  from {
+    transform: translate3d(0, 100%, 0) scale3d(1, 2, 1);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+.btn-cta {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.btn-cta::before,
+.btn-cta::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* circle blob — expands from top center */
+.btn-cta::before {
+  width: 135%;
+  height: 0;
+  padding-bottom: 135%;
+  top: -120%;
+  left: -17.5%;
+  border-radius: 50%;
+  transform: translate3d(0, 68%, 0) scale3d(0, 0, 0);
+}
+
+.btn-cta:hover::before {
+  transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+/* solid fill snaps in after blob covers */
+.btn-cta::after {
+  transform: translate3d(0, -100%, 0);
+  transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+.btn-cta:hover::after {
+  transform: translate3d(0, 0, 0);
+  transition-duration: 0.05s;
+  transition-delay: 0.4s;
+  transition-timing-function: linear;
+}
+
+/* inner wrapper — clips text bounce */
+.btn-cta__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+/* text row */
+.btn-cta__text {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.btn-cta:hover .btn-cta__text {
+  animation: MoveScaleUpInitial 0.3s forwards,
+    MoveScaleUpEnd 0.3s forwards 0.3s;
+}
+
+/* ── Primary (green) ── */
+.btn-cta--primary {
+  background: var(--color-brand-deep);
+  color: #fff;
+}
+
+.btn-cta--primary::before,
+.btn-cta--primary::after {
+  background: var(--color-brand);
+}
+
+/* ── Secondary (grey) ── */
+.btn-cta--secondary {
+  background: #e2e2e2;
+  color: var(--color-ink);
+}
+
+.btn-cta--secondary::before,
+.btn-cta--secondary::after {
+  background: #cacaca;
+}
+
+/* ── Outline (white bg, green fill on hover) ── */
+.btn-cta--outline {
+  background: white;
+}
+
+.btn-cta--outline::before,
+.btn-cta--outline::after {
+  background: var(--color-brand-deep);
+}
+
+.btn-cta--outline:hover {
+  color: #fff;
+}
+
+/* ── Dark (navbar) ── */
+.btn-cta--dark {
+  background: var(--color-ink);
+  color: #fff;
+}
+
+.btn-cta--dark::before,
+.btn-cta--dark::after {
+  background: var(--color-brand-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-cta::before,
+  .btn-cta::after {
+    display: none;
+  }
+  .btn-cta:hover .btn-cta__text {
+    animation: none;
+  }
+}
+
