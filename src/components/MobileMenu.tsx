@@ -7,10 +7,10 @@ import Link from "next/link";
 import gsap from "gsap";
 
 const NAV_LINKS = [
-  { label: "Home", href: "#" },
-  { label: "Features", href: "#features" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Resource", href: "#resource" },
+  { label: "Home", href: "/" },
+  { label: "Features", href: "/#features" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Resource", href: "/blog" },
 ];
 
 function Overlay({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -190,7 +190,7 @@ function Overlay({ open, onClose }: { open: boolean; onClose: () => void }) {
       <div className="relative z-10 flex flex-col items-center gap-6 px-6 pb-10">
         <Link
           ref={ctaRef}
-          href="#get-started"
+          href="/#get-started"
           onClick={onClose}
           className="flex h-13 w-full max-w-[260px] items-center justify-center rounded-full bg-[var(--color-brand)] text-[15px] font-semibold text-white opacity-0 transition-all duration-300 hover:bg-[#00c987] hover:shadow-[0_0_40px_rgba(0,182,122,0.35)]"
         >

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { CheckIcon, ChevronRight } from "./Icons";
+import BookDemoButton from "./BookDemoButton";
 
 const points = [
   "Improve Local SEO Rankings",
@@ -45,7 +46,7 @@ export default function PowerfulFeatures() {
             {/* CTAs */}
             <div className="flex flex-col gap-4 sm:flex-row sm:gap-6">
               <a
-                href="#"
+                href="/pricing"
                 className="btn-cta btn-cta--primary inline-flex h-14 items-center justify-center whitespace-nowrap rounded-full px-8 text-[16px] font-medium text-white sm:h-16 sm:text-[18px]"
               >
                 <span className="btn-cta__inner">
@@ -57,19 +58,7 @@ export default function PowerfulFeatures() {
                   </span>
                 </span>
               </a>
-              <a
-                href="#"
-                className="btn-cta btn-cta--secondary inline-flex h-14 items-center justify-center whitespace-nowrap rounded-full px-8 text-[16px] font-medium text-[#001f0f] sm:h-16 sm:text-[18px]"
-              >
-                <span className="btn-cta__inner">
-                  <span className="btn-cta__text">
-                    <span>Book a Demo</span>
-                    <span className="btn-arrow">
-                      <ChevronRight width={20} height={20} />
-                    </span>
-                  </span>
-                </span>
-              </a>
+              <BookDemoButton className="btn-cta btn-cta--secondary inline-flex h-14 items-center justify-center whitespace-nowrap rounded-full px-8 text-[16px] font-medium text-[#001f0f] sm:h-16 sm:text-[18px]" />
             </div>
           </div>
 

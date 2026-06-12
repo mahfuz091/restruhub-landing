@@ -31,7 +31,7 @@ export default function PriceComparisonHero() {
             {/* CTAs */}
             <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:gap-6">
               <a
-                href="#"
+                href="/pricing"
                 className="btn-cta btn-cta--primary inline-flex h-14 w-full items-center justify-center whitespace-nowrap rounded-full px-8 text-[16px] font-medium text-white sm:h-16 sm:w-auto sm:text-[18px]"
               >
                 <span className="btn-cta__inner">
@@ -44,7 +44,7 @@ export default function PriceComparisonHero() {
                 </span>
               </a>
               <a
-                href="#"
+                href="/pricing"
                 className="btn-cta btn-cta--outline inline-flex h-14 w-full items-center justify-center whitespace-nowrap rounded-full px-8 text-[16px] font-medium text-[#001f0f] sm:h-16 sm:w-auto sm:text-[18px]"
               >
                 <span className="btn-cta__inner">

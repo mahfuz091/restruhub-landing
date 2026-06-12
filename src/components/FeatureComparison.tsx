@@ -198,7 +198,7 @@ export default function FeatureComparison() {
 
           {/* CTA */}
           <a
-            href="#"
+            href="/pricing"
             className="btn-cta btn-cta--primary mt-10 inline-flex h-14 items-center justify-center whitespace-nowrap rounded-full px-8 text-[16px] font-medium text-white sm:h-16 sm:text-[18px] lg:mt-12"
           >
             <span className="btn-cta__inner">

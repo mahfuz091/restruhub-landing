@@ -19,7 +19,7 @@ export default function AlternativesHero() {
           {/* CTAs */}
           <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:gap-6">
             <a
-              href="#"
+              href="/pricing"
               className="btn-cta btn-cta--primary inline-flex h-14 w-full items-center justify-center whitespace-nowrap rounded-full px-8 text-[16px] font-medium text-white sm:h-16 sm:w-auto sm:text-[18px]"
             >
               <span className="btn-cta__inner">
@@ -32,7 +32,7 @@ export default function AlternativesHero() {
               </span>
             </a>
             <a
-              href="#"
+              href="/pricing"
               className="group inline-flex h-14 w-full items-center justify-center gap-2 whitespace-nowrap rounded-full px-8 text-[16px] font-medium text-[#001f0f] transition-colors hover:text-[#005128] sm:h-16 sm:w-auto sm:text-[18px]"
             >
               <span>View Full Pricing</span>

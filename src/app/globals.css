@@ -28,10 +28,18 @@
   --color-surface: var(--color-surface);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: #ffffff;
   color: var(--color-ink);
   font-family: var(--font-poppins), system-ui, sans-serif;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
 }
 
 .hero-band {
@@ -269,6 +277,9 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   .btn-cta::before,
   .btn-cta::after {
     display: none;

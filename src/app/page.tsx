@@ -21,15 +21,23 @@ export default function Home() {
         <Hero />
         <ReviewsSection />
         <Calculator />
-        <FeaturedSection />
+        <div id="features" className="scroll-mt-20">
+          <FeaturedSection />
+        </div>
         <ImprovementSection />
         <SoftwareSection />
         <PricingTable />
         <HurtingSection />
         <InfographSection />
-        <StepsSection />
-        <CtaSection />
-        <FaqSection />
+        <div id="how" className="scroll-mt-20">
+          <StepsSection />
+        </div>
+        <div id="get-started" className="scroll-mt-20">
+          <CtaSection />
+        </div>
+        <div id="faq" className="scroll-mt-20">
+          <FaqSection />
+        </div>
       </main>
       <Footer />
     </div>

@@ -175,7 +175,7 @@ export default function Calculator() {
               documentation, and reducing manual support work.
             </p>
             <a
-              href="#start"
+              href="/pricing"
               className="btn-cta btn-cta--primary inline-flex h-12 w-fit items-center justify-center whitespace-nowrap rounded-full px-8 text-[15px] font-medium text-white sm:h-14 sm:text-[16px] lg:h-16 lg:text-[18px]"
             >
               <span className="btn-cta__inner">

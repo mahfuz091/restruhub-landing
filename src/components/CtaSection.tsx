@@ -27,7 +27,7 @@ export default function CtaSection() {
           {/* CTA button */}
           <div className="mt-6 sm:mt-8">
             <a
-              href="#start"
+              href="/pricing"
               className="btn-cta btn-cta--primary inline-flex h-14 items-center justify-center whitespace-nowrap rounded-full px-8 text-[16px] font-medium text-white sm:h-16 sm:px-10 sm:text-[18px]"
             >
               <span className="btn-cta__inner">

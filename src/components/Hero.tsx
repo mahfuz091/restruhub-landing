@@ -1,6 +1,7 @@
 import { type Review } from './ReviewCard'
 import ReviewCarousel from './ReviewCarousel'
 import { ChevronRight } from './Icons'
+import BookDemoButton from './BookDemoButton'
 
 const reviews: Review[] = [
   {
@@ -69,7 +70,7 @@ export default function Hero() {
         {/* pill cluster */}
         <div className='relative z-10 flex items-center justify-center gap-2 px-3 sm:gap-6 sm:px-0'>
           <a
-            href='#start'
+            href='/pricing'
             className='btn-cta btn-cta--primary inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full px-4 text-[13px] font-medium text-white sm:h-16 sm:px-10 sm:text-[18px]'
           >
             <span className='btn-cta__inner'>
@@ -81,19 +82,7 @@ export default function Hero() {
               </span>
             </span>
           </a>
-          <a
-            href='#how'
-            className='btn-cta btn-cta--secondary inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full px-4 text-[13px] font-medium sm:h-16 sm:px-10 sm:text-[18px]'
-          >
-            <span className='btn-cta__inner'>
-              <span className='btn-cta__text'>
-                <span>See How It Works</span>
-                <span className='btn-arrow'>
-                  <ChevronRight width={18} height={18} />
-                </span>
-              </span>
-            </span>
-          </a>
+          <BookDemoButton className='btn-cta btn-cta--secondary inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full px-4 text-[13px] font-medium sm:h-16 sm:px-10 sm:text-[18px]' />
         </div>
 
         <ReviewCarousel reviews={reviews} />

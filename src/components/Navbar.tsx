@@ -3,10 +3,11 @@ import Link from "next/link";
 import MobileMenu from "./MobileMenu";
 
 const NAV_LINKS = [
-  { label: "Home", href: "#" },
-  { label: "Features", href: "#features" },
-  { label: "Pricing", href: "pricing" },
-  { label: "Resource", href: "blog" },
+  { label: "Home", href: "/" },
+  { label: "Features", href: "/#features" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Resource", href: "/blog" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -42,8 +43,8 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <Link
-            href="#get-started"
-            className="hidden md:inline-flex justify-center items-center shadow-[0_8px_24px_-12px_rgba(0,31,15,0.55)] px-5 sm:px-7 rounded-full h-10.5 sm:h-11.5 font-medium text-[14px] text-white sm:text-[16px] btn-cta btn-cta--dark"
+            href="/#get-started"
+            className="hidden justify-center items-center shadow-[0_8px_24px_-12px_rgba(0,31,15,0.55)] px-5 sm:px-7 rounded-full h-10.5 sm:h-11.5 font-medium text-[14px] text-white sm:text-[16px] btn-cta btn-cta--dark"
           >
             <span className="btn-cta__inner">
               <span className="btn-cta__text">

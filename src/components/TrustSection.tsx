@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ChevronRight } from "./Icons";
+import BookDemoButton from "./BookDemoButton";
 
 const perks = [
   "No Credit Card Required",
@@ -51,7 +52,7 @@ export default function TrustSection() {
             {/* CTAs */}
             <div className="flex flex-col gap-4 sm:flex-row sm:gap-6">
               <a
-                href="#"
+                href="/pricing"
                 className="btn-cta btn-cta--primary inline-flex h-14 w-full items-center justify-center whitespace-nowrap rounded-full px-8 text-[16px] font-medium text-white sm:h-16 sm:w-auto sm:text-[18px]"
               >
                 <span className="btn-cta__inner">
@@ -63,19 +64,7 @@ export default function TrustSection() {
                   </span>
                 </span>
               </a>
-              <a
-                href="#"
-                className="btn-cta btn-cta--secondary inline-flex h-14 w-full items-center justify-center whitespace-nowrap rounded-full px-8 text-[16px] font-medium sm:h-16 sm:w-auto sm:text-[18px]"
-              >
-                <span className="btn-cta__inner">
-                  <span className="btn-cta__text">
-                    <span>Book a Demo</span>
-                    <span className="btn-arrow">
-                      <ChevronRight width={20} height={20} />
-                    </span>
-                  </span>
-                </span>
-              </a>
+              <BookDemoButton className="btn-cta btn-cta--secondary inline-flex h-14 w-full items-center justify-center whitespace-nowrap rounded-full px-8 text-[16px] font-medium sm:h-16 sm:w-auto sm:text-[18px]" />
             </div>
           </div>
 

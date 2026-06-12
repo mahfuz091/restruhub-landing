@@ -1,4 +1,4 @@
-import Link from "next/link";
+import BookDemoButton from "./BookDemoButton";
 
 const locations = [
   {
@@ -150,13 +150,10 @@ export default function ContactSection() {
                 in-depth look into our agency, the projects we&apos;ve tackled, the
                 solutions we offer, and the culture we cultivate.
               </p>
-              <Link
-                href="/demo"
-                className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#00b67a] to-[#00cd65] px-7 py-4 text-[16px] font-medium text-white transition-transform hover:scale-[1.03] sm:px-8 sm:py-5 sm:text-[18px]"
-              >
+              <BookDemoButton className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#00b67a] to-[#00cd65] px-7 py-4 text-[16px] font-medium text-white transition-transform hover:scale-[1.03] sm:px-8 sm:py-5 sm:text-[18px]">
                 Book A Demo
                 <ChevronRight className="size-5 transition-transform group-hover:translate-x-0.5" />
-              </Link>
+              </BookDemoButton>
             </div>
           </div>
         </div>

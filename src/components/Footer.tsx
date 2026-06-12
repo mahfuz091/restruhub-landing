@@ -3,17 +3,18 @@
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import BookDemoButton from "./BookDemoButton";
 
 const allLinks = [
-  { label: "Features", href: "#features" },
+  { label: "Features", href: "/#features" },
   { label: "Pricing", href: "/pricing" },
-  { label: "How It Works", href: "#how" },
-  { label: "Get a Demo", href: "#demo" },
-  { label: "FAQ", href: "#faq" },
+  { label: "How It Works", href: "/#how" },
+  { label: "Get a Demo", href: "/#get-started", demo: true },
+  { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/contact" },
-  { label: "Support", href: "#support" },
-  { label: "Privacy Policy", href: "#privacy" },
-  { label: "Terms of Service", href: "#terms" },
+  { label: "Support", href: "/contact" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms of Service", href: "/terms-conditions" },
 ];
 
 const columns = [
@@ -49,15 +50,24 @@ export default function Footer() {
 
           {/* links — single column on mobile, 3 columns on lg */}
           <div className="flex flex-col gap-3 lg:hidden">
-            {allLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-[16px] font-medium text-[var(--color-ink)] transition-colors hover:text-[var(--color-brand-deep)]"
-              >
-                {link.label}
-              </a>
-            ))}
+            {allLinks.map((link) =>
+              link.demo ? (
+                <BookDemoButton
+                  key={link.label}
+                  className="text-left text-[16px] font-medium text-[var(--color-ink)] transition-colors hover:text-[var(--color-brand-deep)]"
+                >
+                  {link.label}
+                </BookDemoButton>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-[16px] font-medium text-[var(--color-ink)] transition-colors hover:text-[var(--color-brand-deep)]"
+                >
+                  {link.label}
+                </a>
+              )
+            )}
           </div>
 
           <div className="hidden lg:flex lg:gap-20">
@@ -65,12 +75,20 @@ export default function Footer() {
               <ul key={i} className="flex flex-col gap-4">
                 {col.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-[16px] text-[var(--color-ink)] transition-colors hover:text-[var(--color-brand-deep)]"
-                    >
-                      {link.label}
-                    </a>
+                    {link.demo ? (
+                      <BookDemoButton
+                        className="text-[16px] text-[var(--color-ink)] transition-colors hover:text-[var(--color-brand-deep)]"
+                      >
+                        {link.label}
+                      </BookDemoButton>
+                    ) : (
+                      <a
+                        href={link.href}
+                        className="text-[16px] text-[var(--color-ink)] transition-colors hover:text-[var(--color-brand-deep)]"
+                      >
+                        {link.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
