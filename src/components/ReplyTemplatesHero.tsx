@@ -11,10 +11,17 @@ export default function ReplyTemplatesHero() {
         <div className="flex flex-col items-center gap-8 sm:gap-10">
           {/* header */}
           <div className="flex flex-col items-center gap-4 text-center sm:gap-6">
-            <h1 className="max-w-[989px] font-[family-name:var(--font-radio-canada-big)] text-[26px] font-bold leading-[1.15] tracking-[-0.01em] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]">
+            <h1
+              data-split
+              className="max-w-[989px] font-[family-name:var(--font-radio-canada-big)] text-[26px] font-bold leading-[1.15] tracking-[-0.01em] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]"
+            >
               Choose from 100 free Google Review Reply Templates
             </h1>
-            <p className="max-w-[1190px] text-[14px] font-medium leading-[1.7] tracking-[-0.01em] text-[var(--color-ink-soft)] sm:text-[18px]">
+            <p
+              data-reveal
+              data-reveal-delay="0.15"
+              className="max-w-[1190px] text-[14px] font-medium leading-[1.7] tracking-[-0.01em] text-[var(--color-ink-soft)] sm:text-[18px]"
+            >
               Ready-made professional replies for every review rating. Save
               valuable time and respond confidently without starting from
               scratch. Discover how review responses can improve your local SEO
@@ -30,7 +37,10 @@ export default function ReplyTemplatesHero() {
                 "radial-gradient(130% 150% at 0% 0%, rgba(0,159,107,0.12), transparent 45%), radial-gradient(130% 150% at 100% 100%, rgba(0,159,107,0.12), transparent 45%), rgba(0,159,107,0.04)",
             }}
           >
-            <div className="relative grid grid-cols-1 divide-y divide-white/60 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+            <div
+              data-reveal-stagger
+              className="relative grid grid-cols-1 divide-y divide-white/60 sm:grid-cols-3 sm:divide-x sm:divide-y-0"
+            >
               {stats.map((s) => (
                 <div
                   key={s.label}

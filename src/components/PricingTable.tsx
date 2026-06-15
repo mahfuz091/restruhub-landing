@@ -149,7 +149,7 @@ export default function PricingTable() {
     <section className="bg-white pb-20 pt-0 lg:pb-[150px] lg:pt-0">
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 lg:px-0">
         {/* table card */}
-        <div ref={scrollRef} className="pricing-scroll overflow-x-auto rounded-[20px] border border-[#D9D9D9]">
+        <div ref={scrollRef} data-reveal className="pricing-scroll overflow-x-auto rounded-[20px] border border-[#D9D9D9]">
           <table className="w-full min-w-[800px] border-collapse">
             {/* header */}
             <thead>
@@ -203,7 +203,7 @@ export default function PricingTable() {
         </div>
 
         {/* CTA */}
-        <div className="mt-8 flex justify-center sm:mt-10">
+        <div data-reveal className="mt-8 flex justify-center sm:mt-10">
           <a
             href="/pricing"
             className="btn-cta btn-cta--primary inline-flex h-14 items-center justify-center whitespace-nowrap rounded-full px-8 text-[16px] font-medium text-white sm:h-16 sm:text-[18px]"

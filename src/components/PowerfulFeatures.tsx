@@ -20,16 +20,22 @@ export default function PowerfulFeatures() {
           <div className="flex flex-col gap-8 lg:max-w-[616px] lg:flex-1 lg:gap-[42px]">
             <div className="flex flex-col gap-8 sm:gap-[42px]">
               <div className="flex flex-col gap-4 sm:gap-[36px]">
-                <h2 className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] tracking-[-0.01em] text-[#001f0f] md:text-[36px] lg:text-[44px] xl:text-[56px]">
+                <h2
+                  data-split
+                  className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] tracking-[-0.01em] text-[#001f0f] md:text-[36px] lg:text-[44px] xl:text-[56px]"
+                >
                   Powerful Features Built for Growing Businesses
                 </h2>
-                <p className="max-w-[585px] text-[15px] font-medium leading-[1.7] tracking-[-0.01em] text-[#2b2d2c] sm:text-[18px]">
+                <p
+                  data-reveal
+                  className="max-w-[585px] text-[15px] font-medium leading-[1.7] tracking-[-0.01em] text-[#2b2d2c] sm:text-[18px]"
+                >
                   Businesses that reply consistently appear more active,
                   trustworthy, and customer-focused.
                 </p>
               </div>
 
-              <ul className="flex flex-col gap-[14px]">
+              <ul data-reveal-stagger className="flex flex-col gap-[14px]">
                 {points.map((p) => (
                   <li key={p} className="flex items-center gap-3">
                     <span className="flex size-5 shrink-0 items-center justify-center rounded-[6px] bg-[#c7fad2]">
@@ -63,7 +69,7 @@ export default function PowerfulFeatures() {
           </div>
 
           {/* right collage */}
-          <div className="lg:flex-1">
+          <div data-reveal="right" className="lg:flex-1">
             <Image
               src="/images/powerful-features-mockup.png"
               alt="RestruHub feature preview"

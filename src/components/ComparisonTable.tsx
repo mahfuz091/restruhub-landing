@@ -101,10 +101,16 @@ export default function ComparisonTable() {
         <div className="flex flex-col items-center gap-8 sm:gap-10 lg:gap-10">
           {/* header */}
           <div className="flex flex-col items-center gap-3 text-center sm:gap-4">
-            <h2 className="mx-auto max-w-[880px] font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] tracking-[-0.01em] text-[#001f0f] md:text-[36px] lg:text-[44px] xl:text-[56px]">
+            <h2
+              data-split
+              className="mx-auto max-w-[880px] font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] tracking-[-0.01em] text-[#001f0f] md:text-[36px] lg:text-[44px] xl:text-[56px]"
+            >
               Feature-by-Feature Comparison
             </h2>
-            <p className="max-w-[585px] text-[15px] font-medium leading-[1.7] tracking-[-0.01em] text-[#2b2d2c] sm:text-[18px]">
+            <p
+              data-reveal
+              className="max-w-[585px] text-[15px] font-medium leading-[1.7] tracking-[-0.01em] text-[#2b2d2c] sm:text-[18px]"
+            >
               See exactly what you get (and what you don&apos;t) with each
               platform.
             </p>
@@ -155,6 +161,7 @@ export default function ComparisonTable() {
           {/* CTA */}
           <a
             href="/pricing"
+            data-reveal
             className="btn-cta btn-cta--primary inline-flex h-14 items-center justify-center whitespace-nowrap rounded-full px-8 text-[16px] font-medium text-white sm:h-16 sm:text-[18px]"
           >
             <span className="btn-cta__inner">

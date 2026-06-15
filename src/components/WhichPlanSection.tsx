@@ -107,11 +107,17 @@ export default function WhichPlanSection() {
   return (
     <section className="bg-[#f7f7f7] py-12 sm:py-20 lg:py-[150px]">
       <div className="mx-auto flex w-full max-w-[1320px] flex-col items-center gap-10 px-5 sm:gap-[44px] sm:px-6 2xl:px-0">
-        <h2 className="font-[family-name:var(--font-radio-canada-big)] text-center text-[26px] font-semibold leading-[1.15] tracking-[-0.01em] text-[#001f0f] md:text-[36px] lg:text-[44px] xl:text-[56px]">
+        <h2
+          data-split
+          className="font-[family-name:var(--font-radio-canada-big)] text-center text-[26px] font-semibold leading-[1.15] tracking-[-0.01em] text-[#001f0f] md:text-[36px] lg:text-[44px] xl:text-[56px]"
+        >
           Which One Is Right for You?
         </h2>
 
-        <div className="flex w-full flex-col items-stretch gap-6 md:flex-row md:gap-[30px]">
+        <div
+          data-reveal-stagger
+          className="flex w-full flex-col items-stretch gap-6 md:flex-row md:gap-[30px]"
+        >
           <PlanCard
             badgeLabel="Best for Small Businesses"
             badgeClass="bg-[#f37927] text-white"

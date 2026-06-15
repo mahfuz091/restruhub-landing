@@ -94,14 +94,21 @@ export default function ReplyGenerator() {
     <section className="py-12 sm:py-20 lg:py-[100px]">
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 xl:px-0">
         <div className="mx-auto max-w-[920px] text-center">
-          <h2 className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-bold leading-[1.15] tracking-[-0.01em] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]">
+          <h2
+            data-split
+            className="max-w-[910px] font-[family-name:var(--font-radio-canada-big)] text-[26px] font-bold leading-[1.15] tracking-[-0.01em] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]"
+          >
             AI-Powered{" "}
             <span className="text-[var(--color-brand)]">
               Google Review Replies
             </span>{" "}
             for Modern Businesses
           </h2>
-          <p className="mx-auto mt-5 max-w-[820px] text-[14px] leading-[1.7] text-[var(--color-ink-soft)] sm:text-[16px]">
+          <p
+            data-reveal
+            data-reveal-delay="0.15"
+            className="mx-auto mt-5 max-w-[820px] text-[14px] leading-[1.7] text-[var(--color-ink-soft)] sm:text-[16px]"
+          >
             Respond to every customer review with smart, personalized, and
             professional AI-generated replies in seconds. RestruHub helps
             businesses save time, improve reputation, and build stronger
@@ -109,7 +116,10 @@ export default function ReplyGenerator() {
           </p>
         </div>
 
-        <div className="mx-auto mt-10 max-w-[1180px] rounded-[20px] bg-[#f3f4f1] p-5 sm:mt-12 sm:p-8 lg:p-10">
+        <div
+          data-reveal="scale"
+          className="mx-auto mt-10 max-w-[1180px] rounded-[20px] bg-[#f3f4f1] p-5 sm:mt-12 sm:p-8 lg:p-10"
+        >
           <label className="block">
             <span className="block text-[14px] font-semibold text-[var(--color-ink)] sm:text-[15px]">
               Paste the Google review you want to reply to:

@@ -79,12 +79,18 @@ export default function PricingPlans({ plans }: Props) {
       <div className="mx-auto px-5 sm:px-6 lg:px-0 w-full max-w-[1320px]">
         {/* heading */}
         <div className="mx-auto max-w-[700px] text-center">
-          <h2 className="font-[family-name:var(--font-radio-canada-big)] font-bold text-[28px] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px] leading-[1.12] tracking-[-0.01em]">
+          <h2
+            data-split
+            className="font-[family-name:var(--font-radio-canada-big)] font-bold text-[28px] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px] leading-[1.12] tracking-[-0.01em]"
+          >
             আপনার প্রয়োজনে{" "}
             <span className="text-[var(--color-brand)]">সঠিক প্ল্যান</span> বেছে
             নিন
           </h2>
-          <p className="mx-auto mt-4 sm:mt-5 max-w-[600px] text-[14px] text-[var(--color-ink-soft)] sm:text-[16px] leading-[22px] sm:leading-[26px]">
+          <p
+            data-reveal
+            className="mx-auto mt-4 sm:mt-5 max-w-[600px] text-[14px] text-[var(--color-ink-soft)] sm:text-[16px] leading-[22px] sm:leading-[26px]"
+          >
             নমনীয় ও স্বচ্ছ মূল্য নির্ধারণ — আপনার ব্যবসার সাথে বাড়তে পারে।
           </p>
         </div>
@@ -112,6 +118,7 @@ export default function PricingPlans({ plans }: Props) {
 
         {/* plan cards */}
         <div
+          data-reveal-stagger
           className={`mt-10 grid grid-cols-1 gap-6 sm:mt-12 lg:gap-8 ${gridCols}`}
         >
           {plans.map((plan) => {

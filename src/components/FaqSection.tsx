@@ -35,7 +35,9 @@ export default function FaqSection() {
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 lg:px-0">
         {/* heading */}
         <div className="text-center">
-          <h2 className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]">
+          <h2
+            data-split
+            className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]">
             Frequently Asked
             <br />
             <span className="text-[var(--color-brand)]">Questions</span>
@@ -43,7 +45,9 @@ export default function FaqSection() {
         </div>
 
         {/* grid */}
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:mt-14 lg:gap-6">
+        <div
+          data-reveal-stagger
+          className="mt-8 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:mt-14 lg:gap-6">
           {faqs.map((faq) => (
             <div
               key={faq.q}

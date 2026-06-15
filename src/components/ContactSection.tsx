@@ -67,7 +67,10 @@ export default function ContactSection() {
 
         <div className="relative flex flex-col items-center">
           {/* Heading */}
-          <h2 className="text-center font-[family-name:var(--font-radio-canada-big)] text-[32px] font-semibold leading-[1.15] text-white sm:text-[44px] lg:text-[56px] lg:leading-[64px]">
+          <h2
+            className="text-center font-[family-name:var(--font-radio-canada-big)] text-[32px] font-semibold leading-[1.15] text-white sm:text-[44px] lg:text-[56px] lg:leading-[64px]"
+            data-split
+          >
             Get in Touch Now for <span className="text-[#04e49b]">Business</span>
           </h2>
 
@@ -86,7 +89,10 @@ export default function ContactSection() {
           </div>
 
           {/* Address bar */}
-          <div className="mt-10 grid w-full grid-cols-1 gap-8 rounded-[20px] border-[3px] border-white bg-black/50 px-5 py-8 sm:mt-12 sm:px-6 md:grid-cols-3 md:gap-6">
+          <div
+            className="mt-10 grid w-full grid-cols-1 gap-8 rounded-[20px] border-[3px] border-white bg-black/50 px-5 py-8 sm:mt-12 sm:px-6 md:grid-cols-3 md:gap-6"
+            data-reveal-stagger
+          >
             {locations.map((loc) => (
               <div key={loc.title} className="flex items-start gap-3">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -145,15 +151,20 @@ export default function ContactSection() {
                   Startups
                 </span>
               </h3>
-              <p className="text-[16px] font-medium leading-[1.7] tracking-[-0.09px] text-[#f6f8f4] sm:text-[18px]">
+              <p
+                className="text-[16px] font-medium leading-[1.7] tracking-[-0.09px] text-[#f6f8f4] sm:text-[18px]"
+                data-reveal
+              >
                 Interested in learning more about us? Our company deck provides an
                 in-depth look into our agency, the projects we&apos;ve tackled, the
                 solutions we offer, and the culture we cultivate.
               </p>
-              <BookDemoButton className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#00b67a] to-[#00cd65] px-7 py-4 text-[16px] font-medium text-white transition-transform hover:scale-[1.03] sm:px-8 sm:py-5 sm:text-[18px]">
-                Book A Demo
-                <ChevronRight className="size-5 transition-transform group-hover:translate-x-0.5" />
-              </BookDemoButton>
+              <div data-reveal data-reveal-delay="0.2">
+                <BookDemoButton className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#00b67a] to-[#00cd65] px-7 py-4 text-[16px] font-medium text-white transition-transform hover:scale-[1.03] sm:px-8 sm:py-5 sm:text-[18px]">
+                  Book A Demo
+                  <ChevronRight className="size-5 transition-transform group-hover:translate-x-0.5" />
+                </BookDemoButton>
+              </div>
             </div>
           </div>
         </div>

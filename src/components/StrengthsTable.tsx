@@ -44,7 +44,10 @@ export default function StrengthsTable() {
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 2xl:px-0">
         <div className="flex flex-col items-center gap-8 sm:gap-10 lg:gap-11">
           {/* header */}
-          <h2 className="mx-auto max-w-[880px] text-center font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] tracking-[-0.01em] text-[#001f0f] md:text-[36px] lg:text-[44px] xl:text-[56px]">
+          <h2
+            data-split
+            className="mx-auto max-w-[880px] text-center font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] tracking-[-0.01em] text-[#001f0f] md:text-[36px] lg:text-[44px] xl:text-[56px]"
+          >
             Strengths And Limitations Of RestruHub Vs Podium
           </h2>
 

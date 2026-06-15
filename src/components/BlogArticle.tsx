@@ -464,7 +464,10 @@ export default function BlogArticle({
         <article className="min-w-0 flex-1 lg:max-w-[896px]">
           {/* Header */}
           <header className="flex flex-col">
-            <h1 className="border-b border-[#f3f4f6] pb-4 text-[26px] font-bold leading-[34px] text-[#181818] sm:text-[28px] sm:leading-[38px] lg:text-[30px] lg:leading-[37.5px]">
+            <h1
+              className="border-b border-[#f3f4f6] pb-4 text-[26px] font-bold leading-[34px] text-[#181818] sm:text-[28px] sm:leading-[38px] lg:text-[30px] lg:leading-[37.5px]"
+              data-split
+            >
               {post.title}
             </h1>
             <p className="pt-4 text-[14px] leading-5 text-[#6a7282]">
@@ -473,7 +476,10 @@ export default function BlogArticle({
           </header>
 
           {/* Banner image */}
-          <div className="mt-6 overflow-hidden rounded-[24px] shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]">
+          <div
+            className="mt-6 overflow-hidden rounded-[24px] shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]"
+            data-reveal="scale"
+          >
             <div className="relative aspect-[895/470] w-full">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img

@@ -31,18 +31,27 @@ export default function GetStartedSection() {
         <div className="flex flex-col gap-10">
           {/* header */}
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <h2 className="max-w-[640px] font-[family-name:var(--font-radio-canada-big)] text-[26px] font-bold leading-[1.15] tracking-[-0.01em] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]">
+            <h2
+              className="max-w-[640px] font-[family-name:var(--font-radio-canada-big)] text-[26px] font-bold leading-[1.15] tracking-[-0.01em] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]"
+              data-split
+            >
               Get Started In Minutes{" "}
               <span className="text-[#009f6b]">With Restruhub</span>
             </h2>
-            <p className="max-w-[400px] text-[16px] leading-[24px] text-[var(--color-ink-soft)] sm:text-[18px] sm:leading-[26px]">
+            <p
+              className="max-w-[400px] text-[16px] leading-[24px] text-[var(--color-ink-soft)] sm:text-[18px] sm:leading-[26px]"
+              data-reveal
+            >
               No complicated setup or training. Connect your account and
               everything starts working in the background.
             </p>
           </div>
 
           {/* cards */}
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div
+            className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+            data-reveal-stagger
+          >
             {steps.map((s) => (
               <div
                 key={s.step}

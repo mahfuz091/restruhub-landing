@@ -47,17 +47,26 @@ export default function StarRatingGuide() {
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 2xl:px-0">
         {/* header */}
         <div className="mx-auto flex max-w-[851px] flex-col items-center gap-4 text-center">
-          <h2 className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-bold leading-[1.15] tracking-[-0.01em] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]">
+          <h2
+            data-split
+            className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-bold leading-[1.15] tracking-[-0.01em] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]"
+          >
             How to Reply to Every Star Rating
           </h2>
-          <p className="text-[14px] font-medium leading-[1.7] tracking-[-0.01em] text-[var(--color-ink-soft)] sm:text-[18px]">
+          <p
+            data-reveal
+            className="text-[14px] font-medium leading-[1.7] tracking-[-0.01em] text-[var(--color-ink-soft)] sm:text-[18px]"
+          >
             Different ratings need different response strategies. Here&apos;s how
             to handle each one effectively.
           </p>
         </div>
 
         {/* grid */}
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:mt-12 lg:grid-cols-2 lg:gap-10">
+        <div
+          data-reveal-stagger
+          className="mt-10 grid grid-cols-1 gap-6 sm:mt-12 lg:grid-cols-2 lg:gap-10"
+        >
           {cards.map((c) => (
             <div
               key={c.label}

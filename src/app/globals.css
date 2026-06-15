@@ -32,6 +32,83 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ──────────────────────────────────────────────────────────────────
+   GSAP reveal engine — pre-hide marked elements before the JS runs so
+   there is never a flash of un-animated content. Gated on `html.gsap`,
+   which an inline <head> script adds before first paint (and a failsafe
+   strips again if the engine never boots). Driven by SiteAnimations.tsx.
+   ────────────────────────────────────────────────────────────────── */
+html.gsap [data-reveal],
+html.gsap [data-reveal-stagger] > * {
+  opacity: 0;
+  transform: translateY(46px);
+  will-change: transform, opacity;
+}
+html.gsap [data-reveal='left'] {
+  transform: translateX(-56px);
+}
+html.gsap [data-reveal='right'] {
+  transform: translateX(56px);
+}
+html.gsap [data-reveal='scale'] {
+  transform: scale(0.9);
+}
+html.gsap [data-reveal='fade'] {
+  transform: none;
+}
+/* Clip reveal — wipe in from the left, no fade/move. */
+html.gsap [data-reveal='clip'] {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0% 100% 0% 0%);
+}
+/* Blur reveal — focus + rise in. */
+html.gsap [data-reveal='blur'] {
+  transform: translateY(28px);
+  filter: blur(14px);
+}
+/* Split headings hide themselves until SplitText measures the lines. */
+html.gsap [data-split] {
+  opacity: 0;
+}
+/* Gradient-wipe lines need a touch of padding so descenders/ascenders are
+   not clipped by the text-bounded background-clip box. */
+[data-split] .split-line {
+  padding-bottom: 0.05em;
+}
+
+/* Marquee track — laid out in a row, clipped by its parent. */
+[data-marquee] {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+}
+[data-tilt] {
+  transform-style: preserve-3d;
+}
+
+/* Sticky navbar — condensed state once the page is scrolled. */
+[data-navbar] {
+  transition: box-shadow 0.3s ease, background-color 0.3s ease,
+    height 0.3s ease;
+}
+[data-navbar].is-scrolled {
+  box-shadow: 0 10px 30px -18px rgba(0, 31, 15, 0.45);
+  background-color: rgba(255, 255, 255, 0.96);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Reveal everything immediately — no motion. */
+  html.gsap [data-reveal],
+  html.gsap [data-reveal-stagger] > *,
+  html.gsap [data-split] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    filter: none !important;
+  }
+}
+
 body {
   background: #ffffff;
   color: var(--color-ink);

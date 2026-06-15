@@ -53,12 +53,19 @@ export default function Hero() {
     <section className='relative overflow-hidden bg-white'>
       {/* headline */}
       <div className='mx-auto w-full max-w-330 px-5 pt-8 text-center sm:px-6 sm:pt-14 lg:px-10 lg:pt-24'>
-        <h1 className='font-[family-name:var(--font-radio-canada-big)] mx-auto max-w-215 font-bold leading-[1.08] tracking-[-0.015em] text-ink text-[28px] sm:text-[44px] md:text-[56px] lg:text-[68px]'>
+        <h1
+          data-split='words'
+          className='font-[family-name:var(--font-radio-canada-big)] mx-auto max-w-215 font-bold leading-[1.08] tracking-[-0.015em] text-ink text-[28px] sm:text-[44px] md:text-[56px] lg:text-[68px]'
+        >
           Stop Losing Customers
           <br className='hidden sm:block' /> From Unanswered{' '}
           <span className='text-accent'>Reviews</span>
         </h1>
-        <p className='mx-auto mt-3 max-w-160 text-[14px] leading-5.5 text-ink-soft/85 sm:mt-7 sm:text-[18px] sm:leading-7'>
+        <p
+          data-reveal
+          data-reveal-delay='0.15'
+          className='mx-auto mt-3 max-w-160 text-[14px] leading-5.5 text-ink-soft/85 sm:mt-7 sm:text-[18px] sm:leading-7'
+        >
           RestruHub helps you reply to every review, understand what customers
           are unhappy about, and fix issues before they affect your rating and
           reputation.
@@ -68,7 +75,11 @@ export default function Hero() {
       {/* band: pills + cards on the hero-band background */}
       <div className='hero-band relative -mt-6 w-full pt-11 sm:-mt-8 sm:pt-14 lg:-mt-14 lg:pt-20'>
         {/* pill cluster */}
-        <div className='relative z-10 flex items-center justify-center gap-2 px-3 sm:gap-6 sm:px-0'>
+        <div
+          data-reveal-stagger
+          data-reveal-delay='0.3'
+          className='relative z-10 flex items-center justify-center gap-2 px-3 sm:gap-6 sm:px-0'
+        >
           <a
             href='/pricing'
             className='btn-cta btn-cta--primary inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full px-4 text-[13px] font-medium text-white sm:h-16 sm:px-10 sm:text-[18px]'
@@ -85,7 +96,9 @@ export default function Hero() {
           <BookDemoButton className='btn-cta btn-cta--secondary inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full px-4 text-[13px] font-medium sm:h-16 sm:px-10 sm:text-[18px]' />
         </div>
 
-        <ReviewCarousel reviews={reviews} />
+        <div data-reveal='fade' data-reveal-delay='0.45'>
+          <ReviewCarousel reviews={reviews} />
+        </div>
       </div>
     </section>
   )

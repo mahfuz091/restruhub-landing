@@ -20,16 +20,22 @@ export default function FeaturesSection() {
           <div className="flex w-full flex-col gap-8 lg:min-w-0 lg:flex-1 lg:gap-10">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-4">
-                <h2 className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-bold leading-[1.1] tracking-[-0.01em] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]">
+                <h2
+                  data-split
+                  className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-bold leading-[1.1] tracking-[-0.01em] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]"
+                >
                   Powerful Features Built for Growing Businesses
                 </h2>
-                <p className="max-w-[585px] text-[14px] font-medium leading-[1.7] tracking-[-0.01em] text-[var(--color-ink-soft)] sm:text-[18px]">
+                <p
+                  data-reveal
+                  className="max-w-[585px] text-[14px] font-medium leading-[1.7] tracking-[-0.01em] text-[var(--color-ink-soft)] sm:text-[18px]"
+                >
                   Businesses that reply consistently appear more active,
                   trustworthy, and customer-focused.
                 </p>
               </div>
 
-              <ul className="flex flex-col gap-3.5">
+              <ul data-reveal-stagger className="flex flex-col gap-3.5">
                 {perks.map((p) => (
                   <li key={p} className="flex items-center gap-3">
                     <Image
@@ -68,7 +74,10 @@ export default function FeaturesSection() {
           </div>
 
           {/* right mockup */}
-          <div className="mx-auto w-full max-w-[634px] lg:mx-0 lg:min-w-0 lg:flex-1">
+          <div
+            data-reveal="right"
+            className="mx-auto w-full max-w-[634px] lg:mx-0 lg:min-w-0 lg:flex-1"
+          >
             <Image
               src="/images/reply-generator/features-mockup.png"
               alt="RestruHub automated reply settings"

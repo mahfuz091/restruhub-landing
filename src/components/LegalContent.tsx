@@ -55,10 +55,16 @@ export default function LegalContent({
   return (
     <section className="bg-white py-12 sm:py-16 lg:py-20">
       <div className="mx-auto w-full max-w-[860px] px-5 sm:px-6 lg:px-0">
-        <h2 className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-bold leading-[1.15] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[32px]">
+        <h2
+          className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-bold leading-[1.15] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[32px]"
+          data-split
+        >
           {heading}
         </h2>
-        <p className="mt-2 text-[14px] text-[var(--color-ink-soft)]">
+        <p
+          className="mt-2 text-[14px] text-[var(--color-ink-soft)]"
+          data-reveal
+        >
           Last updated: {updated}
         </p>
 

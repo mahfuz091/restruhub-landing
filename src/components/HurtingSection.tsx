@@ -27,12 +27,16 @@ export default function HurtingSection() {
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 lg:px-0">
         {/* heading */}
         <div className="mx-auto max-w-[700px] text-center">
-          <h2 className="font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px]">
+          <h2
+            data-split
+            className="font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px]">
             Know Exactly What Is
             <br />
             <span className="text-[var(--color-brand)]">Hurting Your Rating</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-[540px] text-[14px] leading-[22px] text-[var(--color-ink-soft)] sm:mt-5 sm:text-[16px] sm:leading-[26px]">
+          <p
+            data-reveal
+            className="mx-auto mt-4 max-w-[540px] text-[14px] leading-[22px] text-[var(--color-ink-soft)] sm:mt-5 sm:text-[16px] sm:leading-[26px]">
             No need to read every review or guess what went wrong. RestruHub shows
             the real issues clearly so you can fix them before they affect more
             customers.
@@ -40,7 +44,9 @@ export default function HurtingSection() {
         </div>
 
         {/* cards */}
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:mt-14 lg:grid-cols-3 lg:gap-6">
+        <div
+          data-reveal-stagger
+          className="mt-8 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:mt-14 lg:grid-cols-3 lg:gap-6">
           {cards.map((card) => (
             <div
               key={card.title}

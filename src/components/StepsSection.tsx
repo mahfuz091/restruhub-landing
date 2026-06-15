@@ -71,12 +71,16 @@ export default function StepsSection() {
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 lg:px-0">
         {/* header row */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <h2 className="max-w-[680px] font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.1] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px]">
+          <h2
+            data-split
+            className="max-w-[680px] font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.1] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px]">
             Get Started In Minutes{" "}
             <br className="hidden lg:block" />
             <span className="text-[var(--color-brand)]">With RestruHub</span>
           </h2>
-          <p className="max-w-[380px] text-[14px] leading-[22px] text-[var(--color-ink-soft)] sm:text-[16px] sm:leading-[26px]">
+          <p
+            data-reveal
+            className="max-w-[380px] text-[14px] leading-[22px] text-[var(--color-ink-soft)] sm:text-[16px] sm:leading-[26px]">
             No complicated setup or training. Connect your account and everything
             starts working in the background.
           </p>
@@ -100,7 +104,9 @@ export default function StepsSection() {
         </div>
 
         {/* desktop: grid */}
-        <div className="mt-14 hidden lg:grid lg:grid-cols-3 lg:gap-7">
+        <div
+          data-reveal-stagger
+          className="mt-14 hidden lg:grid lg:grid-cols-3 lg:gap-7">
           {steps.map((s) => (
             <StepCard key={s.step} s={s} />
           ))}

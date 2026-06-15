@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Radio_Canada_Big, Dancing_Script } from "next/font/google";
 import "./globals.css";
+import SiteAnimations from "@/components/SiteAnimations";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -37,9 +38,19 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${poppins.variable} ${radioCanadaBig.variable} ${dancingScript.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans bg-white text-ink">
+        {/* Pre-paint: enable GSAP reveal pre-hide; strip it if the engine
+            never boots (JS error / disabled) so content can't stay hidden. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){var d=document.documentElement;if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('gsap');setTimeout(function(){if(!window.__gsapReady){d.classList.remove('gsap')}},2500)}})();",
+          }}
+        />
+        <SiteAnimations />
         {children}
       </body>
     </html>

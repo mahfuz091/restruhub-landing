@@ -29,10 +29,16 @@ export default function WhyRepliesSection() {
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 2xl:px-0">
         {/* header */}
         <div className="mx-auto flex max-w-[860px] flex-col items-center gap-4 text-center">
-          <h2 className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-bold leading-[1.15] tracking-[-0.01em] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]">
+          <h2
+            data-split
+            className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-bold leading-[1.15] tracking-[-0.01em] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]"
+          >
             Why Your Replies Win Customers
           </h2>
-          <p className="max-w-[576px] text-[14px] font-medium leading-[1.7] tracking-[-0.01em] text-[var(--color-ink-soft)] sm:text-[18px]">
+          <p
+            data-reveal
+            className="max-w-[576px] text-[14px] font-medium leading-[1.7] tracking-[-0.01em] text-[var(--color-ink-soft)] sm:text-[18px]"
+          >
             Responding to reviews isn&apos;t just about reputation it directly
             impacts customer confidence and local search visibility.
           </p>
@@ -41,7 +47,10 @@ export default function WhyRepliesSection() {
         {/* content */}
         <div className="mt-10 flex flex-col items-stretch gap-8 sm:mt-12 min-[1200px]:flex-row min-[1200px]:items-end min-[1200px]:gap-[56px]">
           {/* left mockup */}
-          <div className="mx-auto w-full max-w-[664px] min-[1200px]:mx-0 min-[1200px]:w-[664px] min-[1200px]:shrink-0">
+          <div
+            data-reveal="left"
+            className="mx-auto w-full max-w-[664px] min-[1200px]:mx-0 min-[1200px]:w-[664px] min-[1200px]:shrink-0"
+          >
             <Image
               src="/images/reply-generator/why-replies-mockup.png"
               alt="RestruHub AI reply workflow"
@@ -53,7 +62,10 @@ export default function WhyRepliesSection() {
           </div>
 
           {/* right feature cards */}
-          <div className="flex flex-1 flex-col gap-5 lg:gap-6">
+          <div
+            data-reveal-stagger
+            className="flex flex-1 flex-col gap-5 lg:gap-6"
+          >
             {features.map((f) => (
               <div
                 key={f.title}

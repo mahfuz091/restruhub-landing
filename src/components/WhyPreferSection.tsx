@@ -29,7 +29,10 @@ export default function WhyPreferSection() {
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 2xl:px-0">
         {/* header */}
         <div className="mx-auto flex max-w-[880px] flex-col items-center text-center">
-          <h2 className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] tracking-[-0.01em] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]">
+          <h2
+            data-split
+            className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] tracking-[-0.01em] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]"
+          >
             Why Businesses Prefer Restruhub Over Podium
           </h2>
         </div>
@@ -37,7 +40,10 @@ export default function WhyPreferSection() {
         {/* content */}
         <div className="mt-10 flex flex-col items-stretch gap-8 sm:mt-12 min-[1200px]:flex-row min-[1200px]:items-center min-[1200px]:gap-[56px]">
           {/* left mockup */}
-          <div className="mx-auto w-full max-w-[664px] min-[1200px]:mx-0 min-[1200px]:w-[664px] min-[1200px]:shrink-0">
+          <div
+            data-reveal="left"
+            className="mx-auto w-full max-w-[664px] min-[1200px]:mx-0 min-[1200px]:w-[664px] min-[1200px]:shrink-0"
+          >
             <Image
               src="/images/restruhub-vs-podium/why-prefer-mockup.png"
               alt="RestruHub AI reply workflow"
@@ -48,7 +54,10 @@ export default function WhyPreferSection() {
           </div>
 
           {/* right feature cards */}
-          <div className="flex flex-1 flex-col gap-5 lg:gap-6">
+          <div
+            data-reveal-stagger
+            className="flex flex-1 flex-col gap-5 lg:gap-6"
+          >
             {features.map((f) => (
               <div
                 key={f.title}

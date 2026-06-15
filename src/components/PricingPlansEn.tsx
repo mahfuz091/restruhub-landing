@@ -100,12 +100,18 @@ export default function PricingPlansEn({ plans, initialRegion }: Props) {
       <div className="mx-auto px-5 sm:px-6 lg:px-0 w-full max-w-[1320px]">
         {/* heading */}
         <div className="mx-auto max-w-[700px] text-center">
-          <h2 className="font-[family-name:var(--font-radio-canada-big)] font-bold text-[28px] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px] leading-[1.12] tracking-[-0.01em]">
+          <h2
+            data-split
+            className="font-[family-name:var(--font-radio-canada-big)] font-bold text-[28px] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px] leading-[1.12] tracking-[-0.01em]"
+          >
             Choose the{" "}
             <span className="text-[var(--color-brand)]">Right Plan</span> for
             Your Needs
           </h2>
-          <p className="mx-auto mt-4 sm:mt-5 max-w-[600px] text-[14px] text-[var(--color-ink-soft)] sm:text-[16px] leading-[22px] sm:leading-[26px]">
+          <p
+            data-reveal
+            className="mx-auto mt-4 sm:mt-5 max-w-[600px] text-[14px] text-[var(--color-ink-soft)] sm:text-[16px] leading-[22px] sm:leading-[26px]"
+          >
             Take your business to the next level with flexible, transparent
             pricing adaptable to your needs.
           </p>
@@ -134,6 +140,7 @@ export default function PricingPlansEn({ plans, initialRegion }: Props) {
 
         {/* plan cards */}
         <div
+          data-reveal-stagger
           className={`mt-10 grid grid-cols-1 gap-6 sm:mt-12 sm:gap-5 lg:gap-6 ${gridCols}`}
         >
           {plans.map((plan, index) => {

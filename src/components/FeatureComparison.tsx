@@ -134,10 +134,16 @@ export default function FeatureComparison() {
         <div className="flex flex-col items-center">
           {/* header */}
           <div className="flex flex-col items-center gap-3 text-center sm:gap-4">
-            <h2 className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] tracking-[-0.01em] text-[#001f0f] md:text-[36px] lg:text-[44px] xl:text-[56px]">
+            <h2
+              data-split
+              className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] tracking-[-0.01em] text-[#001f0f] md:text-[36px] lg:text-[44px] xl:text-[56px]"
+            >
               Feature-by-Feature Comparison
             </h2>
-            <p className="text-[15px] font-medium leading-[1.7] tracking-[-0.01em] text-[#2b2d2c] sm:text-[18px]">
+            <p
+              data-reveal
+              className="text-[15px] font-medium leading-[1.7] tracking-[-0.01em] text-[#2b2d2c] sm:text-[18px]"
+            >
               See how all 5 alternatives stack up against each other.
             </p>
           </div>
@@ -199,6 +205,7 @@ export default function FeatureComparison() {
           {/* CTA */}
           <a
             href="/pricing"
+            data-reveal
             className="btn-cta btn-cta--primary mt-10 inline-flex h-14 items-center justify-center whitespace-nowrap rounded-full px-8 text-[16px] font-medium text-white sm:h-16 sm:text-[18px] lg:mt-12"
           >
             <span className="btn-cta__inner">

@@ -14,12 +14,19 @@ export default function PriceComparisonHero() {
           {/* header */}
           <div className="flex flex-col items-center gap-8 sm:gap-10 lg:gap-12">
             <div className="flex flex-col items-center gap-5 text-center sm:gap-6">
-              <h1 className="mx-auto max-w-[1060px] font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] tracking-[-0.01em] text-[#001f0f] md:text-[36px] lg:text-[44px] xl:text-[56px]">
+              <h1
+                data-split
+                className="mx-auto max-w-[1060px] font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] tracking-[-0.01em] text-[#001f0f] md:text-[36px] lg:text-[44px] xl:text-[56px]"
+              >
                 Why pay <span className="text-[#ff383c]">$399</span> when you can
                 get better Google review replies from{" "}
                 <span className="text-[#009f6b]">$15</span>?
               </h1>
-              <p className="mx-auto max-w-[996px] text-[15px] font-medium leading-[1.7] tracking-[-0.01em] text-[#2b2d2c] sm:text-[18px]">
+              <p
+                data-reveal
+                data-reveal-delay="0.15"
+                className="mx-auto max-w-[996px] text-[15px] font-medium leading-[1.7] tracking-[-0.01em] text-[#2b2d2c] sm:text-[18px]"
+              >
                 Most reputation management tools charge enterprise prices for
                 features small restaurants don&apos;t need. RestruHub gives you
                 smart, professional review replies — faster, more personal, and
@@ -29,7 +36,11 @@ export default function PriceComparisonHero() {
             </div>
 
             {/* CTAs */}
-            <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:gap-6">
+            <div
+              data-reveal
+              data-reveal-delay="0.3"
+              className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:gap-6"
+            >
               <a
                 href="/pricing"
                 className="btn-cta btn-cta--primary inline-flex h-14 w-full items-center justify-center whitespace-nowrap rounded-full px-8 text-[16px] font-medium text-white sm:h-16 sm:w-auto sm:text-[18px]"
@@ -60,7 +71,10 @@ export default function PriceComparisonHero() {
           </div>
 
           {/* stats */}
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div
+            data-reveal-stagger
+            className="grid grid-cols-1 gap-4 sm:grid-cols-3"
+          >
             {stats.map((s) => (
               <div
                 key={s.label}

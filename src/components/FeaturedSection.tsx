@@ -33,7 +33,10 @@ export default function FeaturedSection() {
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 lg:px-0">
         {/* section heading */}
         <div className="mx-auto max-w-[700px] text-center">
-          <h2 className="font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px]">
+          <h2
+            data-split
+            className="font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px]"
+          >
             Every Review Handled.
             <br />
             <span className="text-[var(--color-brand)]">
@@ -52,7 +55,10 @@ export default function FeaturedSection() {
               }`}
             >
               {/* image */}
-              <div className="w-full max-w-[500px] shrink-0 lg:w-[50%] lg:max-w-none">
+              <div
+                data-reveal="clip"
+                className="w-full max-w-[500px] shrink-0 overflow-hidden rounded-[24px] sm:rounded-[32px] lg:w-[50%] lg:max-w-none"
+              >
                 <Image
                   src={feature.image}
                   alt={feature.title}
@@ -63,7 +69,7 @@ export default function FeaturedSection() {
               </div>
 
               {/* text content */}
-              <div className="flex-1">
+              <div data-reveal-stagger className="flex-1">
                 <h3 className="text-[24px] font-medium leading-[1.15] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[28px] lg:text-[36px] lg:leading-[44px]">
                   {feature.title}
                 </h3>

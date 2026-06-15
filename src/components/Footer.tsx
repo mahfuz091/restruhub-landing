@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import BookDemoButton from "./BookDemoButton";
@@ -33,14 +34,16 @@ export default function Footer() {
         {/* main footer */}
         <div className="flex flex-col gap-8 py-10 sm:py-14 lg:flex-row lg:items-start lg:justify-between lg:py-16">
           {/* left — logo + description */}
-          <div className="max-w-[480px]">
-            <Image
-              src="/images/footer-logo.svg"
-              alt="RestruHub"
-              width={280}
-              height={40}
-              className="h-10 w-auto sm:h-12"
-            />
+          <div data-reveal className="max-w-[480px]">
+            <Link href="/" aria-label="RestruHub home" className="inline-block">
+              <Image
+                src="/images/footer-logo.svg"
+                alt="RestruHub"
+                width={280}
+                height={40}
+                className="h-10 w-auto sm:h-12"
+              />
+            </Link>
             <p className="mt-4 text-[14px] leading-[22px] text-[var(--color-ink-soft)] sm:mt-6 sm:text-[16px] sm:leading-[26px]">
               See what customers are actually complaining about and fix issues
               before they affect your rating, reputation, and future customers
@@ -70,7 +73,7 @@ export default function Footer() {
             )}
           </div>
 
-          <div className="hidden lg:flex lg:gap-20">
+          <div data-reveal-stagger className="hidden lg:flex lg:gap-20">
             {columns.map((col, i) => (
               <ul key={i} className="flex flex-col gap-4">
                 {col.map((link) => (

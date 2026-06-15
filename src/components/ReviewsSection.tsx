@@ -39,12 +39,18 @@ export default function ReviewsSection() {
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 lg:px-0">
         {/* heading */}
         <div className="mx-auto max-w-[680px] text-center">
-          <h2 className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]">
+          <h2
+            data-split
+            className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]"
+          >
             Reviews Decide Who{" "}
             <br />
             <span className="text-[var(--color-brand)]">Gets Customers</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-[580px] text-[14px] leading-[22px] text-[var(--color-ink-soft)] sm:mt-6 sm:text-[16px] sm:leading-[26px]">
+          <p
+            data-reveal
+            className="mx-auto mt-4 max-w-[580px] text-[14px] leading-[22px] text-[var(--color-ink-soft)] sm:mt-6 sm:text-[16px] sm:leading-[26px]"
+          >
             Most customers check reviews before choosing where to eat. Ignoring
             feedback and repeated issues reduces trust, lowers ratings, and sends
             potential customers to competitors.
@@ -52,7 +58,10 @@ export default function ReviewsSection() {
         </div>
 
         {/* grid */}
-        <div className="mt-8 flex flex-col gap-4 sm:mt-14 sm:grid sm:grid-cols-2 sm:gap-4 lg:mt-16 lg:grid-cols-3 lg:gap-5">
+        <div
+          data-reveal-stagger
+          className="mt-8 flex flex-col gap-4 sm:mt-14 sm:grid sm:grid-cols-2 sm:gap-4 lg:mt-16 lg:grid-cols-3 lg:gap-5"
+        >
           {cards.map((card) => (
             <div
               key={card.title}

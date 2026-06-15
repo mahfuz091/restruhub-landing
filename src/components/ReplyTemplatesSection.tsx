@@ -229,7 +229,10 @@ export default function ReplyTemplatesSection() {
         <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-[47px]">
           {/* left — tab selector */}
           <div className="flex flex-col gap-5 lg:sticky lg:top-24 lg:w-[443px] lg:shrink-0 lg:gap-6">
-            <h2 className="font-[family-name:var(--font-poppins)] text-[18px] font-medium leading-[26px] text-[#001f0f] sm:text-[22px] sm:leading-[28px]">
+            <h2
+              data-split
+              className="font-[family-name:var(--font-poppins)] text-[18px] font-medium leading-[26px] text-[#001f0f] sm:text-[22px] sm:leading-[28px]"
+            >
               Select a Review Response Template.
             </h2>
 

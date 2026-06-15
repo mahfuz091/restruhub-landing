@@ -42,11 +42,15 @@ export default function Calculator() {
           </span>
 
           {/* heading */}
-          <h2 className="mt-4 font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[36px] text-[var(--color-ink)] sm:text-[32px] sm:leading-[40px] lg:mt-6 lg:text-[40px] lg:leading-[48px]">
+          <h2
+            data-split
+            className="mt-4 font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[36px] text-[var(--color-ink)] sm:text-[32px] sm:leading-[40px] lg:mt-6 lg:text-[40px] lg:leading-[48px]">
             Calculate Your Monthly ROI
           </h2>
 
-          <p className="mt-3 max-w-[728px] text-[15px] leading-[24px] text-[var(--color-ink-soft)] sm:mt-4 sm:text-[16px] sm:leading-[26px] lg:text-[18px]">
+          <p
+            data-reveal
+            className="mt-3 max-w-[728px] text-[15px] leading-[24px] text-[var(--color-ink-soft)] sm:mt-4 sm:text-[16px] sm:leading-[26px] lg:text-[18px]">
             Adjust the numbers to estimate how much time your business saves
             with automated support and organized knowledge management.
           </p>
@@ -140,7 +144,9 @@ export default function Calculator() {
 
           {/* results — 2+1 on mobile, 3-col on sm+ */}
           <div className="mt-6 overflow-hidden rounded-[20px] border border-white bg-[rgba(255,255,255,0.2)] backdrop-blur-[22px] sm:mt-8 lg:mt-10">
-            <div className="grid grid-cols-2 sm:grid-cols-3">
+            <div
+              data-reveal-stagger
+              className="grid grid-cols-2 sm:grid-cols-3">
               <div className="flex flex-col gap-2 border-r border-white p-4 sm:gap-3 sm:p-6 lg:p-8">
                 <span className="text-[28px] font-semibold leading-[1.15] text-[#009f6b] sm:text-[36px] lg:text-[48px] lg:leading-[56px]">
                   {stats.hours}
@@ -169,7 +175,9 @@ export default function Calculator() {
           </div>
 
           {/* footer */}
-          <div className="mt-5 flex flex-col gap-4 sm:mt-6 sm:flex-row sm:items-center sm:justify-between">
+          <div
+            data-reveal
+            className="mt-5 flex flex-col gap-4 sm:mt-6 sm:flex-row sm:items-center sm:justify-between">
             <p className="max-w-[572px] text-[14px] leading-[22px] text-[var(--color-ink-soft)]">
               Includes time saved from answering repetitive questions, organizing
               documentation, and reducing manual support work.

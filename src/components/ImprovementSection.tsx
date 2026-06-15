@@ -34,12 +34,18 @@ export default function ImprovementSection() {
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 lg:px-0">
         {/* heading */}
         <div className="mx-auto max-w-[680px] text-center">
-          <h2 className="font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px]">
+          <h2
+            data-split
+            className="font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px]"
+          >
             From Review To
             <br />
             <span className="text-[var(--color-brand)]">Real Improvement</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-[520px] text-[14px] leading-[22px] text-[var(--color-ink-soft)] sm:mt-5 sm:text-[16px] sm:leading-[26px]">
+          <p
+            data-reveal
+            className="mx-auto mt-4 max-w-[520px] text-[14px] leading-[22px] text-[var(--color-ink-soft)] sm:mt-5 sm:text-[16px] sm:leading-[26px]"
+          >
             Everything works together in the background so you can focus on your
             restaurant
           </p>
@@ -50,7 +56,7 @@ export default function ImprovementSection() {
           {/* continuous dashed line */}
           <div className="absolute bottom-0 left-[14px] top-0 w-0 border-l-[2px] border-dashed border-[#d0d3d1]" />
 
-          <div className="flex flex-col gap-4">
+          <div data-reveal-stagger className="flex flex-col gap-4">
             {steps.map((step, i) => (
               <div key={step.title} className="flex items-center gap-4">
                 {/* dot */}
@@ -91,7 +97,7 @@ export default function ImprovementSection() {
 
         {/* desktop: horizontal grid */}
         <div className="mt-14 hidden lg:block">
-          <div className="grid grid-cols-4 gap-5">
+          <div data-reveal-stagger className="grid grid-cols-4 gap-5">
             {steps.map((step, i) => (
               <div
                 key={step.title}

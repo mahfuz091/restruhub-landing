@@ -15,11 +15,17 @@ export default function WhyLeavingPodium() {
 
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 2xl:px-0">
         <div className="flex flex-col items-center gap-10 sm:gap-11">
-          <h2 className="mx-auto max-w-[900px] text-center font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] tracking-[-0.01em] text-[#001f0f] md:text-[36px] lg:text-[44px] xl:text-[56px]">
+          <h2
+            data-split
+            className="mx-auto max-w-[900px] text-center font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] tracking-[-0.01em] text-[#001f0f] md:text-[36px] lg:text-[44px] xl:text-[56px]"
+          >
             Why Are Businesses Leaving Podium?
           </h2>
 
-          <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-3">
+          <div
+            data-reveal-stagger
+            className="grid w-full grid-cols-1 gap-4 sm:grid-cols-3"
+          >
             {stats.map((s) => (
               <div
                 key={s.label}

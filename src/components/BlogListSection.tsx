@@ -63,7 +63,7 @@ export default function BlogListSection({
     <section className="mx-auto w-full max-w-[1320px] px-5 py-12 sm:px-6 lg:px-8 lg:py-[150px] 2xl:px-0">
       <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-12">
         {/* Main column */}
-        <div className="flex min-w-0 flex-1 flex-col gap-8">
+        <div className="flex min-w-0 flex-1 flex-col gap-8" data-reveal-stagger>
           {posts.map((post) => (
             <Link
               key={post.slug}
@@ -184,7 +184,7 @@ export default function BlogListSection({
             <h3 className="text-[18px] font-semibold leading-7 text-[#181818]">
               Recommended Topics
             </h3>
-            <div className="flex flex-wrap gap-2.5">
+            <div className="flex flex-wrap gap-2.5" data-reveal-stagger>
               {topics.map((topic, i) => (
                 <button
                   key={topic}

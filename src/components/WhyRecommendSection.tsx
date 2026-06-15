@@ -29,10 +29,16 @@ export default function WhyRecommendSection() {
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 2xl:px-0">
         {/* header */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
-          <h2 className="max-w-[640px] font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] tracking-[-0.01em] text-[#001f0f] md:text-[36px] lg:text-[44px] xl:text-[56px]">
+          <h2
+            data-split
+            className="max-w-[640px] font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] tracking-[-0.01em] text-[#001f0f] md:text-[36px] lg:text-[44px] xl:text-[56px]"
+          >
             Why We Recommend RestruHub
           </h2>
-          <p className="max-w-[489px] text-[15px] leading-[24px] text-[#2b2d2c] sm:text-[16px]">
+          <p
+            data-reveal
+            className="max-w-[489px] text-[15px] leading-[24px] text-[#2b2d2c] sm:text-[16px]"
+          >
             How does ReplyOnTheFly compare to enterprise review management
             platforms like Birdeye, Podium, and ReviewTrackers? Here&apos;s an
             honest breakdown.
@@ -40,7 +46,10 @@ export default function WhyRecommendSection() {
         </div>
 
         {/* cards */}
-        <div className="mt-10 flex flex-col gap-6 lg:mt-12 lg:flex-row lg:items-stretch">
+        <div
+          data-reveal-stagger
+          className="mt-10 flex flex-col gap-6 lg:mt-12 lg:flex-row lg:items-stretch"
+        >
           {/* left card */}
           <div
             className="overflow-hidden rounded-[20px] p-6 sm:p-8 lg:w-[781px] lg:shrink-0"

@@ -12,7 +12,10 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   return (
-    <header className="top-0 z-40 sticky bg-white/90 backdrop-blur border-line/60 border-b w-full">
+    <header
+      data-navbar
+      className="top-0 z-40 sticky bg-white/90 backdrop-blur border-line/60 border-b w-full"
+    >
       <nav className="flex justify-between items-center mx-auto px-5 sm:px-6 lg:px-10 max-w-330 h-16 sm:h-17.5">
         <Link
           href="/"

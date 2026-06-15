@@ -72,7 +72,10 @@ export default function RelatedBlogs({
         <div className="flex flex-col gap-8 sm:gap-10">
           {/* header */}
           <div className="flex items-center justify-between gap-4">
-            <h2 className="text-[24px] font-bold leading-[32px] text-[#181818] sm:text-[30px] sm:leading-[36px]">
+            <h2
+              className="text-[24px] font-bold leading-[32px] text-[#181818] sm:text-[30px] sm:leading-[36px]"
+              data-split
+            >
               Related Blogs
             </h2>
             <Link
@@ -84,7 +87,10 @@ export default function RelatedBlogs({
           </div>
 
           {/* grid */}
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+          <div
+            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+            data-reveal-stagger
+          >
             {related.map((p) => (
               <RelatedCard key={p.slug} post={p} />
             ))}
