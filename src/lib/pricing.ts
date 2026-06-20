@@ -208,7 +208,7 @@ export async function fetchPlans(region: Region): Promise<PricingPlan[]> {
   const fallback = region === "bd" ? bdFallbackPlans : globalFallbackPlans;
   try {
     const res = await fetch(
-      `https://api.restruhub.com/api/auth/pricing-plans?region=${region}`,
+      `${API_BASE_URL}/auth/pricing-plans?region=${region}`,
       {
         headers: { "x-region-code": region },
         cache: "no-store",
