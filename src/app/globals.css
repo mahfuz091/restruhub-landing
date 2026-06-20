@@ -44,26 +44,26 @@ html.gsap [data-reveal-stagger] > * {
   transform: translateY(46px);
   will-change: transform, opacity;
 }
-html.gsap [data-reveal='left'] {
+html.gsap [data-reveal="left"] {
   transform: translateX(-56px);
 }
-html.gsap [data-reveal='right'] {
+html.gsap [data-reveal="right"] {
   transform: translateX(56px);
 }
-html.gsap [data-reveal='scale'] {
+html.gsap [data-reveal="scale"] {
   transform: scale(0.9);
 }
-html.gsap [data-reveal='fade'] {
+html.gsap [data-reveal="fade"] {
   transform: none;
 }
 /* Clip reveal — wipe in from the left, no fade/move. */
-html.gsap [data-reveal='clip'] {
+html.gsap [data-reveal="clip"] {
   opacity: 1;
   transform: none;
   clip-path: inset(0% 100% 0% 0%);
 }
 /* Blur reveal — focus + rise in. */
-html.gsap [data-reveal='blur'] {
+html.gsap [data-reveal="blur"] {
   transform: translateY(28px);
   filter: blur(14px);
 }
@@ -89,7 +89,9 @@ html.gsap [data-split] {
 
 /* Sticky navbar — condensed state once the page is scrolled. */
 [data-navbar] {
-  transition: box-shadow 0.3s ease, background-color 0.3s ease,
+  transition:
+    box-shadow 0.3s ease,
+    background-color 0.3s ease,
     height 0.3s ease;
 }
 [data-navbar].is-scrolled {
@@ -115,12 +117,65 @@ body {
   font-family: var(--font-poppins), system-ui, sans-serif;
 }
 
+.skeleton-block {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(242, 242, 238, 0.96) 0%,
+    rgba(233, 236, 230, 0.98) 42%,
+    rgba(220, 242, 232, 0.96) 100%
+  );
+}
+
+.skeleton-block::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.7) 46%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: skeleton-shimmer 1.8s ease-in-out infinite;
+}
+
+.pricing-skeleton-banner {
+  background-image: url("/images/page-banner.png");
+}
+
+.pricing-skeleton-card--featured {
+  background:
+    radial-gradient(
+      80% 60% at 80% 18%,
+      rgba(0, 182, 122, 0.12) 0%,
+      rgba(0, 182, 122, 0) 100%
+    ),
+    linear-gradient(180deg, #ffffff 0%, #f8fcfa 100%);
+}
+
+@keyframes skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-block::after {
+    animation: none;
+    transform: none;
+  }
+}
+
 button:not(:disabled) {
   cursor: pointer;
 }
 
 .hero-band {
-  background-image: radial-gradient(
+  background-image:
+    radial-gradient(
       60% 80% at 50% 100%,
       rgba(0, 182, 122, 0.16) 0%,
       rgba(0, 182, 122, 0) 70%
@@ -143,7 +198,6 @@ button:not(:disabled) {
     background-repeat: no-repeat;
   }
 }
-
 
 /* ROI calculator slider */
 .calc-slider {
@@ -302,7 +356,8 @@ button:not(:disabled) {
 }
 
 .btn-cta:hover .btn-cta__text {
-  animation: MoveScaleUpInitial 0.3s forwards,
+  animation:
+    MoveScaleUpInitial 0.3s forwards,
     MoveScaleUpEnd 0.3s forwards 0.3s;
 }
 
@@ -365,4 +420,3 @@ button:not(:disabled) {
     animation: none;
   }
 }
-

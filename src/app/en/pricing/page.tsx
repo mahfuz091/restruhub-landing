@@ -16,13 +16,18 @@ export default async function PricingPageEn() {
   }
 
   const plans = await fetchPlans(region);
+  const dashboardUrl = process.env.NEXT_DASHBOARD_URL ?? "";
 
   return (
     <div className="flex flex-col bg-white min-h-screen">
       <Navbar />
       <main className="flex-1">
         <PageBanner breadcrumb="Pricing" title="Simple, Transparent Pricing" />
-        <PricingPlansEn plans={plans} initialRegion={region} />
+        <PricingPlansEn
+          plans={plans}
+          initialRegion={region}
+          dashboardUrl={dashboardUrl}
+        />
         <RiskFreeSection />
         <FaqSection />
       </main>

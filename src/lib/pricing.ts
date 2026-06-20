@@ -1,3 +1,5 @@
+"use server";
+
 import type { Region } from "./region";
 
 export type BillingCycle = "monthly" | "half-yearly" | "yearly";
@@ -206,7 +208,7 @@ export async function fetchPlans(region: Region): Promise<PricingPlan[]> {
   const fallback = region === "bd" ? bdFallbackPlans : globalFallbackPlans;
   try {
     const res = await fetch(
-      `${API_BASE_URL}/auth/pricing-plans?region=${region}`,
+      `https://api.restruhub.com/api/auth/pricing-plans?region=${region}`,
       {
         headers: { "x-region-code": region },
         cache: "no-store",

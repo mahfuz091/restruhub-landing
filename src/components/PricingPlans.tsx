@@ -54,9 +54,10 @@ function getFeatures(plan: PricingPlan): string[] {
 
 interface Props {
   plans: PricingPlan[];
+  dashboardUrl: string;
 }
 
-export default function PricingPlans({ plans }: Props) {
+export default function PricingPlans({ plans, dashboardUrl }: Props) {
   const paidPlans = plans.filter((p) => p.pricingType !== "free_trial");
 
   const availableCycles: BillingCycle[] = Array.from(
@@ -178,7 +179,7 @@ export default function PricingPlans({ plans }: Props) {
                   {/* CTA */}
                   <a
                     target="_blank"
-                    href={`${process.env.NEXT_DASHBOARD_URL ?? "#"}/settings/billing-and-plans`}
+                    href={`${dashboardUrl || "#"}/settings/billing-and-plans`}
                     className={`btn-cta mt-8 flex h-14 items-center justify-center rounded-full text-[15px] font-medium sm:mt-10 sm:h-16 sm:text-[16px] ${
                       isPrimary
                         ? "btn-cta--primary text-white"
