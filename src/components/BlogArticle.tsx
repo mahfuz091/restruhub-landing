@@ -73,6 +73,20 @@ function LinkedInIcon({ className }: { className?: string }) {
   );
 }
 
+function LinkIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 /* ---------------------------- Article blocks ---------------------------- */
 /* Renders EditorJS blocks in the article design (header/paragraph/list/
    image/quote/code/table). Paragraph & table cells are HTML. */
@@ -341,12 +355,46 @@ function TableOfContents({
 
 /* ----------------------------- Share + CTA ----------------------------- */
 
-function ShareCard() {
+function ShareCard({ title }: { title: string }) {
+  const [url, setUrl] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    setUrl(window.location.href);
+  }, []);
+
+  const u = encodeURIComponent(url);
+  const t = encodeURIComponent(title);
+
   const socials = [
-    { Icon: FacebookIcon, label: "Share on Facebook" },
-    { Icon: XIcon, label: "Share on X" },
-    { Icon: LinkedInIcon, label: "Share on LinkedIn" },
+    {
+      Icon: FacebookIcon,
+      label: "Share on Facebook",
+      href: `https://www.facebook.com/sharer/sharer.php?u=${u}`,
+    },
+    {
+      Icon: XIcon,
+      label: "Share on X",
+      href: `https://twitter.com/intent/tweet?url=${u}&text=${t}`,
+    },
+    {
+      Icon: LinkedInIcon,
+      label: "Share on LinkedIn",
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${u}`,
+    },
   ];
+
+  const handleCopy = async () => {
+    if (!url) return;
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      /* clipboard unavailable */
+    }
+  };
+
   return (
     <div className="flex flex-col gap-4 rounded-[16px] bg-[#181818] p-6 shadow-[0px_20px_25px_-5px_rgba(24,24,24,0.1),0px_8px_10px_-6px_rgba(24,24,24,0.1)]">
       <div className="flex items-center gap-2">
@@ -356,16 +404,30 @@ function ShareCard() {
         </span>
       </div>
       <div className="flex gap-4">
-        {socials.map(({ Icon, label }) => (
-          <button
+        {socials.map(({ Icon, label, href }) => (
+          <a
             key={label}
-            type="button"
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label={label}
             className="flex size-10 cursor-pointer items-center justify-center rounded-[8px] bg-white/10 transition-colors hover:bg-white/20"
           >
             <Icon className="size-[18px] text-white" />
-          </button>
+          </a>
         ))}
+        <button
+          type="button"
+          onClick={handleCopy}
+          aria-label={copied ? "Link copied" : "Copy link"}
+          className="flex size-10 cursor-pointer items-center justify-center rounded-[8px] bg-white/10 transition-colors hover:bg-white/20"
+        >
+          {copied ? (
+            <CheckIcon className="size-[18px] text-[var(--color-brand)]" />
+          ) : (
+            <LinkIcon className="size-[18px] text-white" />
+          )}
+        </button>
       </div>
     </div>
   );
@@ -441,10 +503,10 @@ export default function BlogArticle({
   };
 
   return (
-    <section className="mx-auto w-full max-w-[1320px] px-5 py-12 sm:px-6 lg:px-8 lg:py-[150px] 2xl:px-0">
+    <section className="mx-auto w-full max-w-[1320px] px-5 py-12 sm:px-6 lg:px-8 2xl:py-[100px] 2xl:px-0">
       <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-16">
         {/* Sidebar — desktop */}
-        <aside className="hidden shrink-0 lg:block lg:w-[306px]">
+        <aside className="hidden shrink-0 lg:block lg:w-[306px] lg:sticky lg:top-20">
           <div className="sticky top-6 flex flex-col gap-8">
             <div className="flex flex-col gap-6">
               {tocItems.length > 0 && (
@@ -454,7 +516,7 @@ export default function BlogArticle({
                   onNavigate={handleNavigate}
                 />
               )}
-              <ShareCard />
+              <ShareCard title={post.title} />
             </div>
             <GrowCta />
           </div>
@@ -509,7 +571,7 @@ export default function BlogArticle({
 
           {/* Share + CTA — mobile */}
           <div className="mt-12 flex flex-col gap-6 lg:hidden">
-            <ShareCard />
+            <ShareCard title={post.title} />
             <GrowCta />
           </div>
         </article>

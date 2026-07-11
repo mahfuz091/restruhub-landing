@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { type Post } from "@/lib/blog";
+import Image from "next/image";
 
 function ArrowUpRight({ className }: { className?: string }) {
   return (
@@ -18,19 +19,21 @@ function ArrowUpRight({ className }: { className?: string }) {
 function RelatedCard({ post }: { post: Post }) {
   const href = `/blog/${post.slug}`;
   return (
-    <div className="flex flex-col rounded-[24px] border border-[#f3f4f6] bg-white p-[25px]">
+    <div className="flex flex-col rounded-[24px] border border-[#f3f4f6] bg-white p-[20px]">
       {/* image + category badge */}
       <Link
         href={href}
-        className="relative block aspect-[358/223.75] w-full overflow-hidden rounded-[12px]"
+        className="relative block w-full overflow-hidden rounded-[12px]"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={post.image}
           alt={post.title}
-          className="absolute inset-0 h-full w-full object-cover"
+          width={400}
+          height={300}
+          className=" h-full w-full object-contain"
         />
-        <span className="absolute left-4 top-[17px] inline-flex rounded-full bg-white/90 px-4 py-1 text-[12px] font-bold uppercase leading-4 tracking-[0.6px] text-[#181818] shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)] backdrop-blur-[6px]">
+        <span className="absolute left-4 top-[17px] hidden  rounded-full bg-white/90 px-4 py-1 text-[12px] font-bold uppercase leading-4 tracking-[0.6px] text-[#181818] shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)] backdrop-blur-[6px]">
           {post.category}
         </span>
       </Link>
