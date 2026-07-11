@@ -8,7 +8,7 @@ export default function ContactPage() {
     <div className="flex min-h-screen flex-col bg-white">
       <Navbar />
       <main className="flex-1">
-        <PageBanner breadcrumb="Contact us" title="Contact us" />
+        {/* <PageBanner breadcrumb="Contact us" title="Contact us" /> */}
         <ContactSection />
       </main>
       <Footer />

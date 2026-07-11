@@ -31,17 +31,20 @@ const faqs = [
 
 export default function FaqSection() {
   return (
-    <section className="bg-white py-12 sm:py-20 lg:py-[150px]">
-      <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 lg:px-0">
+    <section className="bg-white py-10 sm:py-12 2xl:py-[100px]">
+      <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 2xl:px-0">
         {/* heading */}
-        <div className="text-center">
+        <div className="mx-auto max-w-[650px] text-center">
           <h2
             data-split
-            className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]">
+            className="font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] 2xl:text-[52px]">
             Frequently Asked
             <br />
-            <span className="text-[var(--color-brand)]">Questions</span>
+            <span className="text-[var(--color-brand)]">
+              Questions
+            </span>
           </h2>
+        
         </div>
 
         {/* grid */}

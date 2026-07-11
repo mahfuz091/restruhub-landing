@@ -30,13 +30,13 @@ export default function ImprovementSection() {
   const [active, setActive] = useState<number | null>(null);
 
   return (
-    <section className="bg-[#f3f4f1] py-20 lg:py-[150px]">
+    <section className="bg-[#f3f4f1] py-10 sm:py-12 2xl:py-[100px]">
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 lg:px-0">
         {/* heading */}
-        <div className="mx-auto max-w-[680px] text-center">
+        <div className="mx-auto max-w-[650px] text-center">
           <h2
             data-split
-            className="font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px]"
+            className="font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] 2xl:text-[52px]"
           >
             From Review To
             <br />

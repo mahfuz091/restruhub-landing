@@ -6,7 +6,7 @@ const stats = [
 
 export default function WhyLeavingPodium() {
   return (
-    <section className="relative isolate py-12 sm:py-20 lg:py-[150px]">
+    <section className="relative isolate py-12 sm:py-20 2xl:py-[100px]">
       {/* teal glow in gap between hero CTAs and heading (figma: 849x219, #00B67A, opacity .36, blur 90) */}
       <div
         aria-hidden

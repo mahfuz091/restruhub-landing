@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function InfographSection() {
   return (
-    <section className="bg-[#F7F7F7] py-20 lg:py-[150px]">
+    <section className="bg-[#F7F7F7] py-10 sm:py-12 2xl:py-[100px]">
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 lg:px-0">
         {/* heading */}
         <div className="mx-auto max-w-[700px] text-center">

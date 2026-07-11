@@ -29,7 +29,7 @@ export default function ReviewCarousel({ reviews }: { reviews: Review[] }) {
       </div>
 
       {/* desktop: static row */}
-      <div className="relative z-10 mx-auto mt-14 hidden w-full max-w-[1320px] gap-7 px-10 pb-28 lg:flex">
+      <div className="relative z-10 mx-auto mt-14 hidden w-full max-w-[1320px] gap-7 px-10 pb-5 2xl:pb-20 lg:flex">
         {reviews.map((r) => (
           <div key={r.name} className="flex flex-1">
             <ReviewCard review={r} />

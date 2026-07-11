@@ -52,10 +52,10 @@ export default function Hero() {
   return (
     <section className='relative overflow-hidden bg-white'>
       {/* headline */}
-      <div className='mx-auto w-full max-w-330 px-5 pt-8 text-center sm:px-6 sm:pt-14 lg:px-10 lg:pt-24'>
+      <div className='mx-auto w-full max-w-330 px-5 pt-8 text-center sm:px-6 sm:pt-10 lg:px-10 2xl:pt-24'>
         <h1
           data-split='words'
-          className='font-[family-name:var(--font-radio-canada-big)] mx-auto max-w-215 font-bold leading-[1.08] tracking-[-0.015em] text-ink text-[28px] sm:text-[44px] md:text-[56px] lg:text-[68px]'
+          className='font-[family-name:var(--font-radio-canada-big)] mx-auto max-w-215 font-bold leading-[1.08] tracking-[-0.015em] text-ink text-[28px] sm:text-[44px] md:text-[56px] 2xl:text-[68px]'
         >
           Stop Losing Customers
           <br className='hidden sm:block' /> From Unanswered{' '}
@@ -81,7 +81,8 @@ export default function Hero() {
           className='relative z-10 flex items-center justify-center gap-2 px-3 sm:gap-6 sm:px-0'
         >
           <a
-            href='/pricing'
+            href='https://dashboard.restruhub.com/'
+            target='_blank'
             className='btn-cta btn-cta--primary inline-flex h-11 items-center justify-center whitespace-nowrap rounded-full px-4 text-[13px] font-medium text-white sm:h-16 sm:px-10 sm:text-[18px]'
           >
             <span className='btn-cta__inner'>

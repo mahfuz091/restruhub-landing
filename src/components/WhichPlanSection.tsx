@@ -105,7 +105,7 @@ function PlanCard({
 
 export default function WhichPlanSection() {
   return (
-    <section className="bg-[#f7f7f7] py-12 sm:py-20 lg:py-[150px]">
+    <section className="bg-[#f7f7f7] py-12 sm:py-20 2xl:py-[100px]">
       <div className="mx-auto flex w-full max-w-[1320px] flex-col items-center gap-10 px-5 sm:gap-[44px] sm:px-6 2xl:px-0">
         <h2
           data-split

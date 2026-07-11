@@ -20,9 +20,9 @@ const cards = [
 
 export default function RiskFreeSection() {
   return (
-    <section className="bg-[#F7F7F7] py-20 lg:py-[150px]">
-      <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 lg:px-0">
-        <h2 className="text-center font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px]">
+    <section className="bg-[#F7F7F7] py-10 sm:py-12 2xl:py-[100px]">
+      <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 2xl:px-0">
+        <h2 className="text-center font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] 2xl:text-[52px]">
           Start Risk-Free Today
         </h2>
 

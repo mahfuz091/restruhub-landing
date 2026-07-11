@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const features = [
   {
-    image: "/images/featured/1.svg",
+    image: "/images/featured/1.webp",
     title: "Handle Reviews And Fix Issues Fast",
     description:
       "RestruHub replies to every review in a natural, professional tone, so nothing gets ignored and your customers always feel heard.",
@@ -14,7 +14,7 @@ const features = [
     imageFirst: false,
   },
   {
-    image: "/images/featured/2.svg",
+    image: "/images/featured/2.webp",
     title: "Know What Is Going Wrong Before It Gets Worse",
     description:
       "RestruHub highlights repeated complaints and problem areas, so you can take action before they affect your reputation and customer experience.",
@@ -29,13 +29,13 @@ const features = [
 
 export default function FeaturedSection() {
   return (
-    <section className="bg-white pb-20 pt-0 lg:pb-[150px] lg:pt-0">
+    <section className="bg-white pb-10 pt-0 sm:pb-12 2xl:pb-[150px]">
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 lg:px-0">
         {/* section heading */}
         <div className="mx-auto max-w-[700px] text-center">
           <h2
             data-split
-            className="font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px]"
+            className="font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] 2xl:text-[52px]"
           >
             Every Review Handled.
             <br />

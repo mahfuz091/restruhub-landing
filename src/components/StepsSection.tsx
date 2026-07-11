@@ -67,13 +67,13 @@ function StepCard({ s }: { s: (typeof steps)[0] }) {
 
 export default function StepsSection() {
   return (
-    <section className="bg-white py-20 lg:py-[150px]">
+    <section className="bg-white py-10 sm:py-12 2xl:py-[100px]">
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 lg:px-0">
         {/* header row */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <h2
             data-split
-            className="max-w-[680px] font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.1] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px]">
+            className="max-w-[680px] font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.1] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] 2xl:text-[52px]">
             Get Started In Minutes{" "}
             <br className="hidden lg:block" />
             <span className="text-[var(--color-brand)]">With RestruHub</span>

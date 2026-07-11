@@ -60,6 +60,9 @@ interface Props {
 export default function PricingPlans({ plans, dashboardUrl }: Props) {
   const paidPlans = plans.filter((p) => p.pricingType !== "free_trial");
 
+  console.log(plans, "plans");
+  
+
   const availableCycles: BillingCycle[] = Array.from(
     new Set(paidPlans.flatMap((p) => p.billingOptions)),
   ).filter((c): c is BillingCycle =>
@@ -76,13 +79,13 @@ export default function PricingPlans({ plans, dashboardUrl }: Props) {
         : "sm:grid-cols-2 lg:grid-cols-3";
 
   return (
-    <section className="bg-white py-20 lg:py-[150px]">
-      <div className="mx-auto px-5 sm:px-6 lg:px-0 w-full max-w-[1320px]">
+    <section className="bg-white py-10 sm:py-12 2xl:py-[100px]">
+      <div className="mx-auto px-5 sm:px-6 2xl:px-0 w-full max-w-[1320px]">
         {/* heading */}
         <div className="mx-auto max-w-[700px] text-center">
           <h2
             data-split
-            className="font-[family-name:var(--font-radio-canada-big)] font-bold text-[28px] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px] leading-[1.12] tracking-[-0.01em]"
+            className="font-[family-name:var(--font-radio-canada-big)] font-bold text-[28px] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] 2xl:text-[52px] leading-[1.12] tracking-[-0.01em]"
           >
             আপনার প্রয়োজনে{" "}
             <span className="text-[var(--color-brand)]">সঠিক প্ল্যান</span> বেছে

@@ -6,7 +6,7 @@ const stats = [
 
 export default function ReplyTemplatesHero() {
   return (
-    <section className="py-12 sm:py-16 lg:py-[150px]">
+    <section className="py-12 sm:py-16 2xl:py-[100px]">
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 2xl:px-0">
         <div className="flex flex-col items-center gap-8 sm:gap-10">
           {/* header */}

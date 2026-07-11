@@ -13,7 +13,7 @@ const allLinks = [
   { label: "Get a Demo", href: "/#get-started", demo: true },
   { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/contact" },
-  { label: "Support", href: "/contact" },
+  // { label: "Support", href: "/contact" },
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms of Service", href: "/terms-conditions" },
 ];
@@ -30,7 +30,7 @@ export default function Footer() {
       className="bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: "url(/images/footer-bg.png)" }}
     >
-      <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 lg:px-0">
+      <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 2xl:px-0">
         {/* main footer */}
         <div className="flex flex-col gap-8 py-10 sm:py-14 lg:flex-row lg:items-start lg:justify-between lg:py-16">
           {/* left — logo + description */}

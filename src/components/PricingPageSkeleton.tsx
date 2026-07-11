@@ -47,14 +47,13 @@ export default function PricingPageSkeleton() {
     <div className="flex flex-col bg-white min-h-screen">
       <Navbar />
       <main className="flex-1">
-        <section className="bg-cover bg-no-repeat bg-bottom py-12 sm:py-16 lg:py-[100px] pricing-skeleton-banner">
+        <section className="bg-cover bg-no-repeat bg-bottom py-10 sm:py-12 lg:py-[45px] pricing-skeleton-banner">
           <div className="flex flex-col items-center mx-auto px-5 sm:px-6 lg:px-0 w-full max-w-[1320px] text-center">
-            <SkeletonLine className="w-36 sm:w-44 h-4 sm:h-5" />
-            <SkeletonLine className="mt-5 rounded-[999px] w-full max-w-[640px] h-10 sm:h-14" />
+            <SkeletonLine className="rounded-[999px] w-full max-w-[420px] h-[29px] md:h-[40px] lg:h-[48px] 2xl:h-[62px]" />
           </div>
         </section>
 
-        <section className="bg-white py-20 lg:py-[150px]">
+        <section className="bg-white py-10 sm:py-12 2xl:py-[100px]">
           <div className="mx-auto px-5 sm:px-6 lg:px-0 w-full max-w-[1320px]">
             <div className="mx-auto max-w-[760px] text-center">
               <SkeletonLine className="mx-auto rounded-[999px] w-full max-w-[620px] h-10 sm:h-12" />

@@ -26,10 +26,10 @@ export default function Calculator() {
   const minutePercent = ((minutes - 2) / (15 - 2)) * 100;
 
   return (
-    <section className="bg-white px-5 pb-20 pt-0 sm:px-6 lg:px-10 lg:pb-[150px] lg:pt-0">
+    <section className="bg-white px-5 pb-10 pt-0 sm:px-6 sm:pb-12 lg:px-10 2xl:pb-[150px]">
       <div className="mx-auto max-w-[1320px]">
         <div
-          className="relative overflow-hidden rounded-[20px] p-6 sm:p-8 lg:p-10"
+          className="relative overflow-hidden rounded-[20px] p-6 sm:p-8 2xl:p-10"
           style={{
             backgroundImage: "url(/images/calculator-bg.png)",
             backgroundSize: "cover",
@@ -44,19 +44,19 @@ export default function Calculator() {
           {/* heading */}
           <h2
             data-split
-            className="mt-4 font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[36px] text-[var(--color-ink)] sm:text-[32px] sm:leading-[40px] lg:mt-6 lg:text-[40px] lg:leading-[48px]">
+            className="mt-4 font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[36px] text-[var(--color-ink)] sm:text-[32px] sm:leading-[40px] 2xl:mt-6 lg:text-[40px] lg:leading-[48px]">
             Calculate Your Monthly ROI
           </h2>
 
           <p
             data-reveal
-            className="mt-3 max-w-[728px] text-[15px] leading-[24px] text-[var(--color-ink-soft)] sm:mt-4 sm:text-[16px] sm:leading-[26px] lg:text-[18px]">
+            className="mt-3 max-w-[728px] text-[15px] leading-[24px] text-[var(--color-ink-soft)] 2xl:mt-4 sm:text-[16px] sm:leading-[26px] lg:text-[18px]">
             Adjust the numbers to estimate how much time your business saves
             with automated support and organized knowledge management.
           </p>
 
           {/* sliders */}
-          <div className="mt-6 flex flex-col gap-4 sm:mt-8 sm:gap-8 lg:mt-10">
+          <div className="mt-6 flex flex-col gap-4 sm:mt-8 sm:gap-8 2xl:mt-10">
             {/* review per month */}
             <div>
               {/* mobile: label + value row */}

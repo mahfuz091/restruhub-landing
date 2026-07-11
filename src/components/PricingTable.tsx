@@ -146,7 +146,7 @@ export default function PricingTable() {
   }, [onScroll]);
 
   return (
-    <section className="bg-white pb-20 pt-0 lg:pb-[150px] lg:pt-0">
+    <section className="bg-white pb-10 pt-0 sm:pb-12 2xl:pb-[150px]">
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 lg:px-0">
         {/* table card */}
         <div ref={scrollRef} data-reveal className="pricing-scroll overflow-x-auto rounded-[20px] border border-[#D9D9D9]">

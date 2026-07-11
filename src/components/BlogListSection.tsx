@@ -1,5 +1,23 @@
+"use client";
+
 import Link from "next/link";
+import { useMemo, useRef, useState } from "react";
 import { AVATAR, type Post } from "@/lib/blog";
+
+const PAGE_SIZE = 6;
+
+/** Page numbers with ellipsis: 1 … prev cur next … last */
+function pageItems(current: number, total: number): (number | "…")[] {
+  if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+  const items: (number | "…")[] = [1];
+  const start = Math.max(2, current - 1);
+  const end = Math.min(total - 1, current + 1);
+  if (start > 2) items.push("…");
+  for (let n = start; n <= end; n++) items.push(n);
+  if (end < total - 1) items.push("…");
+  items.push(total);
+  return items;
+}
 
 function CalendarIcon({ className }: { className?: string }) {
   return (
@@ -59,12 +77,33 @@ export default function BlogListSection({
   posts: Post[];
   topics?: string[];
 }) {
+  const [page, setPage] = useState(1);
+  const topRef = useRef<HTMLElement>(null);
+
+  const totalPages = Math.max(1, Math.ceil(posts.length / PAGE_SIZE));
+  const current = Math.min(page, totalPages);
+
+  const pagePosts = useMemo(
+    () => posts.slice((current - 1) * PAGE_SIZE, current * PAGE_SIZE),
+    [posts, current]
+  );
+
+  const goTo = (n: number) => {
+    const next = Math.min(Math.max(1, n), totalPages);
+    if (next === current) return;
+    setPage(next);
+    topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
-    <section className="mx-auto w-full max-w-[1320px] px-5 py-12 sm:px-6 lg:px-8 lg:py-[150px] 2xl:px-0">
+    <section
+      ref={topRef}
+      className="mx-auto w-full max-w-[1320px] scroll-mt-24 px-5 py-12 sm:px-6 lg:px-8 2xl:py-[100px] 2xl:px-0"
+    >
       <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-12">
         {/* Main column */}
         <div className="flex min-w-0 flex-1 flex-col gap-8" data-reveal-stagger>
-          {posts.map((post) => (
+          {pagePosts.map((post) => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
@@ -80,12 +119,12 @@ export default function BlogListSection({
                 </div>
 
                 {/* title */}
-                <h3 className="pb-3 text-[20px] font-semibold leading-[28px] text-[#181818] sm:text-[24px] sm:leading-[32px]">
+                <h3 className="pb-2 text-[20px] font-semibold leading-[28px] text-[#181818] sm:text-[24px] sm:leading-[32px]">
                   {post.title}
                 </h3>
 
                 {/* excerpt */}
-                <p className="pb-6 text-[15px] leading-[26px] text-[#5a6370] sm:text-[15.8px]">
+                <p className="pb-2 text-[15px] leading-[26px] text-[#5a6370] sm:text-[15.8px]">
                   {post.excerpt}
                 </p>
 
@@ -102,47 +141,70 @@ export default function BlogListSection({
               </div>
 
               {/* thumbnail */}
-              <div className="aspect-[283/180] w-full shrink-0 overflow-hidden rounded-[12px] sm:w-[260px] lg:w-[283px]">
+              <div className="w-full shrink-0 overflow-hidden rounded-[12px] sm:w-[340px] lg:w-[380px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={post.image}
                   alt={post.title}
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="h-auto w-full rounded-[12px] object-contain transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
             </Link>
           ))}
 
           {/* Pagination */}
-          <nav className="mt-2 border-t border-[#f3f4f6] pt-8" aria-label="Pagination">
-            <div className="flex flex-wrap items-center justify-center gap-4 lg:justify-between">
-              <button className="flex cursor-pointer items-center gap-2 rounded-full bg-[#f6f8f4] px-6 py-3 text-[16px] font-medium text-[#7c8380] transition-colors hover:bg-[var(--color-brand-deep)] hover:text-white sm:px-8 sm:py-5 sm:text-[18px]">
-                <ChevronRight className="size-5 rotate-180" />
-                Previous
-              </button>
+          {totalPages > 1 && (
+            <nav className="mt-2 border-t border-[#f3f4f6] pt-8" aria-label="Pagination">
+              <div className="flex flex-wrap items-center justify-center gap-4 lg:justify-between">
+                <button
+                  type="button"
+                  onClick={() => goTo(current - 1)}
+                  disabled={current === 1}
+                  className="flex items-center gap-2 rounded-full bg-[#f6f8f4] px-6 py-3 text-[16px] font-medium text-[#7c8380] transition-colors hover:bg-[var(--color-brand-deep)] hover:text-white disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-[#f6f8f4] disabled:hover:text-[#7c8380] sm:px-8 sm:py-5 sm:text-[18px] cursor-pointer"
+                >
+                  <ChevronRight className="size-5 rotate-180" />
+                  Previous
+                </button>
 
-              <div className="flex items-center gap-2 sm:gap-5">
-                {[1, 2, 3, 4, 5, 6].map((n) => (
-                  <button
-                    key={n}
-                    aria-current={n === 1 ? "page" : undefined}
-                    className={`flex size-12 cursor-pointer items-center justify-center rounded-full text-[16px] font-medium transition-colors sm:size-16 sm:text-[18px] ${
-                      n === 1
-                        ? "bg-[var(--color-brand-deep)] text-white"
-                        : "bg-[#f6f8f4] text-[#001f0f] hover:bg-[var(--color-brand-deep)] hover:text-white"
-                    }`}
-                  >
-                    {n}
-                  </button>
-                ))}
+                <div className="flex items-center gap-2 sm:gap-5">
+                  {pageItems(current, totalPages).map((n, i) =>
+                    n === "…" ? (
+                      <span
+                        key={`gap-${i}`}
+                        className="flex size-12 items-center justify-center text-[16px] font-medium text-[#7c8380] sm:size-16 sm:text-[18px]"
+                      >
+                        …
+                      </span>
+                    ) : (
+                      <button
+                        key={n}
+                        type="button"
+                        onClick={() => goTo(n)}
+                        aria-current={n === current ? "page" : undefined}
+                        className={`flex size-12 cursor-pointer items-center justify-center rounded-full text-[16px] font-medium transition-colors sm:size-16 sm:text-[18px] ${
+                          n === current
+                            ? "bg-[var(--color-brand-deep)] text-white"
+                            : "bg-[#f6f8f4] text-[#001f0f] hover:bg-[var(--color-brand-deep)] hover:text-white"
+                        }`}
+                      >
+                        {n}
+                      </button>
+                    )
+                  )}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => goTo(current + 1)}
+                  disabled={current === totalPages}
+                  className="flex items-center gap-2 rounded-full bg-[#f6f8f4] px-6 py-3 text-[16px] font-medium text-[#7c8380] transition-colors hover:bg-[var(--color-brand-deep)] hover:text-white disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-[#f6f8f4] disabled:hover:text-[#7c8380] sm:px-8 sm:py-5 sm:text-[18px] cursor-pointer"
+                >
+                  Next
+                  <ChevronRight className="size-5" />
+                </button>
               </div>
-
-              <button className="flex cursor-pointer items-center gap-2 rounded-full bg-[#f6f8f4] px-6 py-3 text-[16px] font-medium text-[#7c8380] transition-colors hover:bg-[var(--color-brand-deep)] hover:text-white sm:px-8 sm:py-5 sm:text-[18px]">
-                Next
-                <ChevronRight className="size-5" />
-              </button>
-            </div>
-          </nav>
+            </nav>
+          )}
         </div>
 
         {/* Sidebar */}

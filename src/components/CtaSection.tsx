@@ -4,7 +4,7 @@ import { ChevronRight } from "./Icons";
 export default function CtaSection() {
   return (
     <section
-      className="bg-cover bg-center bg-no-repeat pb-0 pt-20 lg:pt-[150px]"
+      className="bg-cover bg-center bg-no-repeat pb-0 pt-10 sm:pt-12 2xl:pt-[150px]"
       style={{ backgroundImage: "url(/images/cta-bg.png)" }}
     >
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 lg:px-0">
@@ -12,7 +12,7 @@ export default function CtaSection() {
         <div className="mx-auto max-w-[760px] text-center">
           <h2
             data-split
-            className="font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px]">
+            className="font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] 2xl:text-[52px]">
             Stop Letting Bad Reviews
             <br />
             <span className="text-[var(--color-brand)]">

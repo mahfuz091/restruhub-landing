@@ -96,7 +96,7 @@ function ValueCell({ cell }: { cell: Cell }) {
 
 export default function ComparisonTable() {
   return (
-    <section className="py-12 sm:py-20 lg:py-[150px]">
+    <section className="py-12 sm:py-20 2xl:py-[100px]">
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 2xl:px-0">
         <div className="flex flex-col items-center gap-8 sm:gap-10 lg:gap-10">
           {/* header */}

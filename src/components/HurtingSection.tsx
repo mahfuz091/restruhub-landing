@@ -23,13 +23,13 @@ const cards = [
 
 export default function HurtingSection() {
   return (
-    <section className="bg-white pb-20 pt-0 lg:pb-[150px] lg:pt-0">
+    <section className="bg-white pb-10 pt-0 sm:pb-12 2xl:pb-[150px]">
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 lg:px-0">
         {/* heading */}
         <div className="mx-auto max-w-[700px] text-center">
           <h2
             data-split
-            className="font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px]">
+            className="font-[family-name:var(--font-radio-canada-big)] text-[28px] font-bold leading-[1.12] tracking-[-0.01em] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] 2xl:text-[52px]">
             Know Exactly What Is
             <br />
             <span className="text-[var(--color-brand)]">Hurting Your Rating</span>

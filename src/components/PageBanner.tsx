@@ -9,12 +9,12 @@ export default function PageBanner({
 }) {
   return (
     <section
-      className="bg-cover bg-bottom bg-no-repeat py-12 sm:py-16 lg:py-[100px]"
+      className="bg-cover bg-bottom bg-no-repeat py-10 sm:py-12 lg:py-[45px]"
       style={{ backgroundImage: "url(/images/page-banner.png)" }}
     >
       <div className="mx-auto w-full max-w-[1320px] px-5 text-center sm:px-6 lg:px-0">
         <div
-          className="text-[14px] text-[var(--color-ink-soft)] sm:text-[16px]"
+          className="text-[14px] text-[var(--color-ink-soft)] sm:text-[16px] hidden"
           data-reveal
         >
           <Link
@@ -28,7 +28,7 @@ export default function PageBanner({
         </div>
 
         <h1
-          className="mt-4 font-[family-name:var(--font-radio-canada-big)] text-[26px] font-bold leading-[1.1] tracking-[-0.01em] text-[var(--color-ink)] sm:mt-5 md:text-[36px] lg:text-[44px] xl:text-[56px]"
+          className=" font-[family-name:var(--font-radio-canada-big)] text-[26px] font-bold leading-[1.1] tracking-[-0.01em] text-[var(--color-ink)]  md:text-[36px] lg:text-[44px] 2xl:text-[56px]"
           data-split
         >
           {title}

@@ -14,7 +14,7 @@ const points = [
 export default function PowerfulFeatures() {
   return (
     <section className="bg-[#f4f5f4]">
-      <div className="mx-auto w-full max-w-[1320px] px-5 py-12 sm:px-6 sm:py-20 lg:py-[150px] 2xl:px-0">
+      <div className="mx-auto w-full max-w-[1320px] px-5 py-12 sm:px-6 sm:py-20 2xl:py-[100px] 2xl:px-0">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:gap-[69px]">
           {/* left */}
           <div className="flex flex-col gap-8 lg:max-w-[616px] lg:flex-1 lg:gap-[42px]">

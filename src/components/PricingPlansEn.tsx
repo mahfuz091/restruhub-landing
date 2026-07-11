@@ -101,7 +101,7 @@ export default function PricingPlansEn({
     plans.length <= 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3";
 
   return (
-    <section className="bg-white py-20 lg:py-[150px]">
+    <section className="bg-white py-20 2xl:py-[100px]">
       <div className="mx-auto px-5 sm:px-6 lg:px-0 w-full max-w-[1320px]">
         {/* heading */}
         <div className="mx-auto max-w-[700px] text-center">

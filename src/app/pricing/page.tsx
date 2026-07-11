@@ -9,6 +9,7 @@ import PricingPlans from "@/components/PricingPlans";
 import RiskFreeSection from "@/components/RiskFreeSection";
 import FaqSection from "@/components/FaqSection";
 import Footer from "@/components/Footer";
+import PricingPageSkeleton from "@/components/PricingPageSkeleton";
 import { getRegion } from "@/lib/client-side-region";
 import { fetchPlans } from "@/lib/pricing";
 import type { PricingPlan } from "@/lib/pricing";
@@ -40,11 +41,7 @@ export default function PricingPage() {
   }, [router]);
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        Loading...
-      </div>
-    );
+    return <PricingPageSkeleton />;
   }
 
   const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL ?? "";

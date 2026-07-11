@@ -35,13 +35,13 @@ const cards = [
 
 export default function ReviewsSection() {
   return (
-    <section className="bg-white py-12 sm:py-20 lg:py-[150px]">
+    <section className="bg-white py-10 sm:py-12 2xl:py-[100px]">
       <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-6 lg:px-0">
         {/* heading */}
         <div className="mx-auto max-w-[680px] text-center">
           <h2
             data-split
-            className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] xl:text-[56px]"
+            className="font-[family-name:var(--font-radio-canada-big)] text-[26px] font-semibold leading-[1.15] text-[var(--color-ink)] md:text-[36px] lg:text-[44px] 2xl:text-[56px]"
           >
             Reviews Decide Who{" "}
             <br />
@@ -65,14 +65,14 @@ export default function ReviewsSection() {
           {cards.map((card) => (
             <div
               key={card.title}
-              className="review-card group relative flex flex-col overflow-hidden rounded-[20px] bg-[#f6f8f4] bg-cover bg-center p-4 sm:p-6 lg:rounded-[20px] lg:p-7"
+              className="review-card group relative flex flex-col overflow-hidden rounded-[20px] bg-[#f6f8f4] bg-cover bg-center p-4 2xl:p-6 2xl:rounded-[20px] lg:p-7"
               style={{
                 backgroundImage: "url(/images/review-section/review-normal-bg.png)",
               }}
             >
               {/* mobile: icon + title row | desktop: icon stacked above */}
               <div className="flex items-center gap-4 lg:flex-col lg:items-start lg:gap-0">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[9px] bg-[rgba(0,31,15,0.06)] transition-colors duration-300 group-hover:bg-[var(--color-brand-deep)] sm:h-14 sm:w-14 sm:rounded-[14px] lg:mb-6 lg:h-14 lg:w-14 lg:rounded-[16px]">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[9px] bg-[rgba(0,31,15,0.06)] transition-colors duration-300 group-hover:bg-[var(--color-brand-deep)] sm:h-14 sm:w-14 sm:rounded-[14px] lg:mb-3 2xl:mb-6 lg:h-14 lg:w-14 lg:rounded-[16px]">
                   <Image
                     src={card.icon}
                     alt=""
@@ -82,12 +82,12 @@ export default function ReviewsSection() {
                   />
                 </div>
 
-                <h3 className="text-[18px] font-medium leading-[22px] text-[var(--color-ink)] sm:text-[19px] sm:leading-[30px] lg:text-[20px]">
+                <h3 className="text-[18px] font-medium leading-[22px] text-[var(--color-ink)] sm:text-[19px] sm:leading-[30px] lg:text-[20px] 2xl:text-[24px] 2xl:leading-[32px]">
                   {card.title}
                 </h3>
               </div>
 
-              <p className="mt-4 text-[14px] leading-[22px] text-[var(--color-ink-soft)] sm:mt-4 sm:text-[14px] sm:leading-[23px] lg:text-[15px] lg:leading-[24px]">
+              <p className="2xl:mt-4 text-[14px] leading-[22px] text-[var(--color-ink-soft)] mt-2 sm:text-[14px] sm:leading-[23px] lg:text-[15px] lg:leading-[24px]">
                 {card.body}
               </p>
             </div>

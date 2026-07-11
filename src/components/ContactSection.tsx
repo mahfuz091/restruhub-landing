@@ -46,7 +46,7 @@ function ChevronRight({ className }: { className?: string }) {
 
 export default function ContactSection() {
   return (
-    <section className="mx-auto w-full max-w-[1320px] px-4 py-10 sm:px-6 lg:px-8 lg:py-[140px] 2xl:px-0">
+    <section className="mx-auto w-full max-w-[1320px] px-4 py-10 sm:px-6 lg:px-8 lg:py-15  2xl:px-0">
       <div className="relative overflow-hidden rounded-[24px] bg-[#103b2d] px-5 py-12 sm:px-10 sm:py-16 lg:px-16 lg:py-20">
         {/* world map backdrop */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
