@@ -17,7 +17,15 @@ const SOCIALS = [
     className: "social",
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="3" width="18" height="18" rx="5" stroke="#fff" strokeWidth="1.8" />
+        <rect
+          x="3"
+          y="3"
+          width="18"
+          height="18"
+          rx="5"
+          stroke="#fff"
+          strokeWidth="1.8"
+        />
         <circle cx="12" cy="12" r="4" stroke="#fff" strokeWidth="1.8" />
         <circle cx="17.5" cy="6.5" r="1.2" fill="#fff" />
       </svg>
@@ -29,10 +37,7 @@ const SOCIALS = [
 export default function CampaignFooter() {
   return (
     <footer className="w-full px-5 pt-[80px] pb-8 sm:px-6 lg:px-[60px]">
-      <div
-        data-reveal
-        className="footer-bar mx-auto flex w-full max-w-[1320px] flex-col items-center justify-between gap-4 sm:flex-row"
-      >
+      <div className="footer-bar mx-auto flex w-full max-w-[1320px] flex-col items-center justify-between gap-4 sm:flex-row">
         <p className="footer-copy">© 2026 RestruHub. All rights reserved.</p>
         <div className="footer-links">
           <Link href="/privacy-policy" className="footer-link">

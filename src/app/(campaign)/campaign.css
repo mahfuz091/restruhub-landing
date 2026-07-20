@@ -42,7 +42,7 @@
   text-transform: capitalize;
 }
 .campaign .h-sec {
-/* margin: 0; */
+  /* margin: 0; */
   font-weight: 700;
   font-size: clamp(30px, 3.7vw, 44px);
   line-height: 1.3;
@@ -335,6 +335,30 @@
 }
 .campaign .footer-link:hover {
   color: #fff;
+}
+
+/* ============================================================
+   Motion pre-hide — mirrors the element list CampaignAnimations
+   animates in, so nothing flashes un-animated before the engine
+   runs. `canim` is set on <html> before first paint by the inline
+   script in the campaign layout and removed by the engine (or by
+   its 2.5s failsafe, if the JS never boots).
+   Hero glows live in the first section and are deliberately not
+   hidden — they only float/parallax, they never fade in.
+   ============================================================ */
+html.canim .campaign .h-hero,
+html.canim .campaign .h-sec,
+html.canim .campaign .h-feat,
+html.canim .campaign .badge,
+html.canim .campaign .lead,
+html.canim .campaign .cta,
+html.canim .campaign .tick,
+html.canim .campaign .step,
+html.canim .campaign .faq-item,
+html.canim .campaign .note,
+html.canim .campaign .footer-bar,
+html.canim .campaign main > section:not(:first-child) img {
+  opacity: 0;
 }
 
 /* ---------------- Accessibility ---------------- */

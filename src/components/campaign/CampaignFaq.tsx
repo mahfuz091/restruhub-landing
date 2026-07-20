@@ -21,11 +21,11 @@ export default function CampaignFaq() {
   return (
     <section className="w-full px-5 pt-[120px] sm:px-8">
       <div className="mx-auto w-full max-w-[999px]">
-        <h2 data-reveal className="h-sec text-center">
+        <h2 className="h-sec text-center">
           <span className="g">Questions?</span> We&apos;ve got you.
         </h2>
 
-        <div data-reveal-stagger className="mt-10 flex flex-col gap-4">
+        <div className="mt-10 flex flex-col gap-4">
           {FAQS.map((item) => (
             <div key={item.q} className="faq-item">
               <p className="faq-q">{item.q}</p>

@@ -28,7 +28,13 @@ export default function CampaignCta({
         <span>{label}</span>
       </span>
       {size === "lg" && (
-        <svg width="9" height="18" viewBox="0 0 8 14" fill="none" aria-hidden="true">
+        <svg
+          width="9"
+          height="18"
+          viewBox="0 0 8 14"
+          fill="none"
+          aria-hidden="true"
+        >
           <path
             d="M1 1l6 6-6 6"
             stroke="#fff"

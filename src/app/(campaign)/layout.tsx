@@ -1,6 +1,7 @@
 import { Inter, Bricolage_Grotesque, Syne } from "next/font/google";
 import CampaignHeader from "@/components/campaign/CampaignHeader";
 import CampaignFooter from "@/components/campaign/CampaignFooter";
+import CampaignAnimations from "@/components/campaign/CampaignAnimations";
 import "./campaign.css";
 
 const inter = Inter({
@@ -33,6 +34,15 @@ export default function CampaignLayout({
     <div
       className={`campaign ${inter.variable} ${bricolage.variable} ${syne.variable} flex min-h-screen flex-col`}
     >
+      {/* Pre-paint: arm the campaign motion pre-hide; strip it if the engine
+          never boots (JS error / disabled) so content can't stay hidden. */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html:
+            "(function(){var d=document.documentElement;if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('canim');setTimeout(function(){if(!window.__campaignAnim){d.classList.remove('canim')}},2500)}})();",
+        }}
+      />
+      <CampaignAnimations />
       <CampaignHeader />
       <main className="flex-1">{children}</main>
       <CampaignFooter />

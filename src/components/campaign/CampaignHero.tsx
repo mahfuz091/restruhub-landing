@@ -11,9 +11,7 @@ export default function CampaignHero() {
         width={637}
         height={957}
         priority
-        data-float
-        data-parallax="0.24"
-        className="pointer-events-none absolute top-0 -left-40 w-[560px] max-w-none select-none"
+        className="glow glow-l pointer-events-none absolute top-0 -left-40 w-[560px] max-w-none select-none"
       />
       <Image
         src="/images/campaign/hero-shape-right.svg"
@@ -22,15 +20,10 @@ export default function CampaignHero() {
         width={613}
         height={957}
         priority
-        data-float
-        data-parallax="0.24"
-        className="pointer-events-none absolute top-0 -right-40 w-[560px] max-w-none select-none"
+        className="glow glow-r pointer-events-none absolute top-0 -right-40 w-[560px] max-w-none select-none"
       />
 
-      <div
-        data-reveal-stagger
-        className="relative mx-auto flex max-w-[1144px] flex-col items-center px-5 text-center sm:px-8"
-      >
+      <div className="relative mx-auto flex max-w-[1144px] flex-col items-center px-5 text-center sm:px-8">
         <span className="badge">
           <Image
             src="/images/campaign/burger.svg"
@@ -49,8 +42,8 @@ export default function CampaignHero() {
         </h1>
 
         <p className="lead mt-5 w-full max-w-[720px]">
-          You run the restaurant. RestruHub handles every review automatically, in your
-          voice.
+          You run the restaurant. RestruHub handles every review automatically,
+          in your voice.
         </p>
 
         <CampaignCta label="Try it free for 14 days" className="mt-8" />

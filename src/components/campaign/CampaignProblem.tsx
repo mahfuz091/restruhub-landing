@@ -6,7 +6,7 @@ export default function CampaignProblem() {
     <section className="w-full px-5 sm:px-6 lg:px-6">
       <div className="panel panel-1 mx-auto w-full max-w-[1392px]">
         <div className="mx-auto flex max-w-[1192px] flex-col-reverse items-center gap-10 lg:flex-row lg:gap-[73px]">
-          <div data-reveal="left" className="w-full lg:w-[618px] lg:flex-shrink-0">
+          <div className="w-full lg:w-[618px] lg:flex-shrink-0">
             <Image
               src="/images/campaign/review-read.png"
               alt="Person reading reviews on their phone outside a restaurant"
@@ -16,16 +16,14 @@ export default function CampaignProblem() {
               style={{ borderRadius: "24px" }}
             />
           </div>
-          <div
-            data-reveal-stagger
-            className="w-full text-center lg:flex-1 lg:text-left"
-          >
+          <div className="w-full text-center lg:flex-1 lg:text-left">
             <h2 className="h-sec">
-              People read your <span className="g">reviews before</span> they walk in.
+              People read your <span className="g">reviews before</span> they
+              walk in.
             </h2>
             <p className="lead mx-auto mt-4 max-w-[501px] lg:mx-0">
-              Every unanswered review quietly costs you customers. They think you don&apos;t
-              care and pick somewhere else.
+              Every unanswered review quietly costs you customers. They think
+              you don&apos;t care and pick somewhere else.
             </p>
             <CampaignCta label="Try it free for 14 days" className="mt-12" />
           </div>
