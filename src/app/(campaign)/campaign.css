@@ -44,7 +44,9 @@
 .campaign .h-sec {
   /* margin: 0; */
   font-weight: 700;
-  font-size: clamp(30px, 3.7vw, 44px);
+  /* Match home-page heading scale on tablet/laptop:
+     ~36px @640, ~44px @768–1024 (home caps h-sec at 44px). */
+  font-size: clamp(28px, 5.6vw, 44px);
   line-height: 1.3;
   letter-spacing: -0.8px;
   color: var(--c-ink);
@@ -194,13 +196,29 @@
 /* ---------------- Inset panels (problem / benefits) ---------------- */
 .campaign .panel {
   border-radius: 60px;
-  padding: clamp(40px, 7vw, 120px) clamp(24px, 7vw, 100px);
+  /* Vertical padding tracks home rhythm through the 1024–1536 band
+     (~48–70px) instead of ballooning to 107px; horizontal unchanged. */
+  padding: clamp(40px, 4.5vw, 88px) clamp(24px, 7vw, 100px);
 }
 .campaign .panel-1 {
   background: var(--c-panel-1);
 }
+/* Problem panel ("People read your reviews…") — tighter through the
+   tablet/laptop band; mobile (<640) and 2xl (≥1536) keep base .panel scale. */
+@media (min-width: 640px) and (max-width: 1535px) {
+  .campaign .panel-1 {
+    padding: 40px 40px;
+  }
+}
 .campaign .panel-2 {
   background: var(--c-panel-2);
+}
+/* Benefits panel ("More reviews. Better rating…") — tighter through the
+   tablet/laptop band; mobile (<640) and 2xl (≥1536) keep base .panel scale. */
+@media (min-width: 640px) and (max-width: 1535px) {
+  .campaign .panel-2 {
+    padding: 40px 40px;
+  }
 }
 
 /* ---------------- Feature image card (What RestruHub does) --------- */

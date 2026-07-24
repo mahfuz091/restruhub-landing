@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function CampaignWhatWeDo() {
   return (
-    <section className="w-full px-5 pt-[120px] sm:px-8 lg:px-12 xl:px-24">
+    <section className="w-full px-5 pt-10 sm:px-8 sm:pt-12 lg:px-12 xl:px-24 2xl:pt-[100px]">
       <div className="mx-auto w-full max-w-[1120px]">
         <div className="max-w-[720px]">
           <h2 className="h-sec">
@@ -12,7 +12,7 @@ export default function CampaignWhatWeDo() {
         </div>
 
         {/* Row 1: text left, image right */}
-        <div className="mt-12 flex flex-col items-center gap-10 lg:flex-row lg:items-center lg:gap-[103px]">
+        <div className="mt-12 flex flex-col items-center gap-10 sm:mt-8 lg:flex-row lg:items-center lg:gap-12 2xl:mt-12 2xl:gap-[103px]">
           <div className="w-full lg:flex-1">
             <Image
               src="/images/campaign/does-icon-1.svg"
@@ -27,7 +27,7 @@ export default function CampaignWhatWeDo() {
               don&apos;t touch a thing.
             </p>
           </div>
-          <div className="feature-card w-full lg:w-[518px] lg:flex-shrink-0">
+          <div className="feature-card w-full lg:w-[430px] lg:flex-shrink-0 2xl:w-[518px]">
             <Image
               src="/images/campaign/does-1.png"
               alt="Phone showing an automatic reply to a Google review"
@@ -38,8 +38,8 @@ export default function CampaignWhatWeDo() {
         </div>
 
         {/* Row 2: image left, text right */}
-        <div className="mt-14 flex flex-col-reverse items-center gap-10 lg:flex-row lg:items-center lg:gap-[103px]">
-          <div className="feature-card w-full lg:w-[518px] lg:flex-shrink-0">
+        <div className="mt-14 flex flex-col-reverse items-center gap-10 sm:mt-8 lg:flex-row lg:items-center lg:gap-12 2xl:mt-14 2xl:gap-[103px]">
+          <div className="feature-card w-full lg:w-[430px] lg:flex-shrink-0 2xl:w-[518px]">
             <Image
               src="/images/campaign/does-2.png"
               alt="Dashboard highlighting areas needing attention from reviews"

@@ -3,7 +3,7 @@ import CampaignCta from "./CampaignCta";
 
 export default function CampaignHero() {
   return (
-    <section className="relative w-full overflow-hidden pt-[60px] pb-10">
+    <section className="relative w-full overflow-hidden pt-4 pb-4 sm:pt-5 sm:pb-5 2xl:pt-[60px] 2xl:pb-10">
       <Image
         src="/images/campaign/hero-shape-left.svg"
         alt=""

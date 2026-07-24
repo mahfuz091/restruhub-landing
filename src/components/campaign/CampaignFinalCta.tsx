@@ -2,7 +2,7 @@ import CampaignCta from "./CampaignCta";
 
 export default function CampaignFinalCta() {
   return (
-    <section id="cta" className="w-full px-5 pt-[120px] sm:px-8">
+    <section id="cta" className="w-full px-5 pt-10 sm:px-8 sm:pt-12 2xl:pt-[100px]">
       <div className="mx-auto flex w-full max-w-[774px] flex-col items-center text-center">
         <h2
           className="h-hero w-full"

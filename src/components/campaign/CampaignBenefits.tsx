@@ -26,11 +26,11 @@ function Tick() {
 
 export default function CampaignBenefits() {
   return (
-    <section className="w-full px-5 pt-[120px] sm:px-6 lg:px-6">
+    <section className="w-full px-5 pt-10 sm:px-6 sm:pt-12 lg:px-6 2xl:pt-[100px]">
       <div className="panel panel-2 mx-auto w-full max-w-[1392px]">
-        <div className="mx-auto flex max-w-[1192px] flex-col items-center gap-12 lg:flex-row lg:items-center lg:gap-[73px]">
+        <div className="mx-auto flex max-w-[1192px] flex-col items-center gap-12 lg:flex-row lg:items-center lg:gap-10 2xl:gap-[73px]">
           {/* Text */}
-          <div className="w-full lg:w-[594px] lg:flex-shrink-0">
+          <div className="w-full lg:flex-1">
             <h2 className="h-sec">
               More reviews. Better rating.{" "}
               <span className="g">More bookings.</span>
@@ -51,13 +51,13 @@ export default function CampaignBenefits() {
             <CampaignCta label="Try it free for 14 days" className="mt-8" />
           </div>
           {/* Image */}
-          <div className="w-full lg:w-[518px] lg:flex-shrink-0">
+          <div className="w-full lg:w-[500px] lg:flex-shrink-0 2xl:w-[518px]">
             <Image
               src="/images/campaign/booking.png"
               alt="Auto-reply rules and instant alerts dashboard"
               width={518}
               height={562}
-              className="block h-auto w-full"
+              className="block h-auto w-full object-cover lg:h-[560px] 2xl:h-auto"
               style={{ borderRadius: "24px" }}
             />
           </div>

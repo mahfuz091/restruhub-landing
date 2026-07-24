@@ -107,14 +107,18 @@ export default function Footer() {
           {/* social icons */}
           <div className="flex items-center gap-3">
             <a
-              href="#"
+              href="https://www.facebook.com/people/Restruhub/61585172453445/"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Facebook"
               className="group flex h-11 w-11 items-center justify-center rounded-full border-[1.5px] border-ink transition-all duration-300 hover:border-brand-deep hover:bg-brand-deep"
             >
               <FontAwesomeIcon icon={faFacebookF} className="h-4 w-4 text-ink transition-colors duration-300 group-hover:text-white" />
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/restruhub/"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Instagram"
               className="group flex h-11 w-11 items-center justify-center rounded-full border-[1.5px] border-ink transition-all duration-300 hover:border-brand-deep hover:bg-brand-deep"
             >

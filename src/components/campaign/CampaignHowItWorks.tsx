@@ -9,7 +9,7 @@ const STEPS = [
 
 export default function CampaignHowItWorks() {
   return (
-    <section className="w-full px-5 pt-[120px] sm:px-8 lg:px-12 xl:px-24">
+    <section className="w-full px-5 pt-10 sm:px-8 sm:pt-12 lg:px-12 xl:px-24 2xl:pt-[100px]">
       <div className="mx-auto w-full max-w-[1248px] text-center">
         <div>
           <h2 className="h-sec">

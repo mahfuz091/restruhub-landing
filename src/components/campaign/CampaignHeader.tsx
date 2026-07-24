@@ -10,7 +10,7 @@ export default function CampaignHeader() {
       style={{ background: "#FAFAFA" }}
     >
       <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-5 py-3 sm:px-8 lg:px-12 xl:px-24">
-        <Link href="/campaign" className="flex flex-shrink-0 items-center">
+        <Link href="/" className="flex flex-shrink-0 items-center">
           <Image
             src="/images/campaign/logo.svg"
             alt="RestruHub"

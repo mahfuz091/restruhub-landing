@@ -19,7 +19,7 @@ const FAQS = [
 
 export default function CampaignFaq() {
   return (
-    <section className="w-full px-5 pt-[120px] sm:px-8">
+    <section className="w-full px-5 pt-10 sm:px-8 sm:pt-12 2xl:pt-[100px]">
       <div className="mx-auto w-full max-w-[999px]">
         <h2 className="h-sec text-center">
           <span className="g">Questions?</span> We&apos;ve got you.
