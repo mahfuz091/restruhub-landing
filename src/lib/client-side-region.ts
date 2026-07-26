@@ -1,4 +1,7 @@
-export type Region = "bd" | "eur" | "global";
+import { regionFromCountry } from "./geo";
+import type { Region } from "./geo";
+
+export type { Region };
 
 const CACHE_KEY = "app_user_region";
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
@@ -8,41 +11,6 @@ const BD_TIMEZONES = new Set(["Asia/Dhaka", "Asia/Dacca"]);
 
 // BCP-47 locale prefixes that indicate Bengali / Bangladesh
 const BD_LOCALE_PREFIXES = ["bn-BD", "bn_BD", "bn-bd"];
-
-// EU + EEA/EFTA country codes
-const EUR_COUNTRIES = new Set([
-  "AT",
-  "BE",
-  "BG",
-  "CY",
-  "CZ",
-  "DE",
-  "DK",
-  "EE",
-  "ES",
-  "FI",
-  "FR",
-  "GR",
-  "HR",
-  "HU",
-  "IE",
-  "IT",
-  "LT",
-  "LU",
-  "LV",
-  "MT",
-  "NL",
-  "PL",
-  "PT",
-  "RO",
-  "SE",
-  "SI",
-  "SK",
-  "CH",
-  "NO",
-  "IS",
-  "LI",
-]);
 
 interface RegionCache {
   region: Region;
@@ -136,11 +104,8 @@ async function detectRegionFromIP(): Promise<Region> {
 
   for (const provider of providers) {
     try {
-      const code = await provider();
-      if (!code) continue;
-      if (code === "BD") return "bd";
-      if (EUR_COUNTRIES.has(code)) return "eur";
-      return "global";
+      const region = regionFromCountry(await provider());
+      if (region) return region;
     } catch {
       // try next provider
     }

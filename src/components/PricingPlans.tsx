@@ -4,6 +4,13 @@ import { useState } from "react";
 import Image from "next/image";
 import { ChevronRight } from "./Icons";
 import type { PricingPlan, BillingCycle } from "@/lib/pricing";
+import {
+  formatMoney,
+  getPlanCtaHref,
+  getPlanPrice,
+  isCustomPlan,
+  isFreePlan,
+} from "@/lib/currency";
 
 const CYCLE_LABEL: Record<BillingCycle, string> = {
   monthly: "Monthly",
@@ -17,29 +24,27 @@ const CYCLE_SUFFIX: Record<BillingCycle, string> = {
   yearly: "/ প্রতি বছরে",
 };
 
-function getPriceBdt(plan: PricingPlan, cycle: BillingCycle): number | null {
-  if (cycle === "monthly") return plan.monthlyPrice ?? null;
-  if (cycle === "half-yearly") return plan.halfYearlyPrice ?? null;
-  return plan.yearlyPrice ?? null;
-}
-
 function formatPrice(plan: PricingPlan, cycle: BillingCycle): string {
-  if (plan.pricingType === "free_trial") {
-    return plan.customPricingLabel?.trim() || "Free";
+  if (isFreePlan(plan)) {
+    return plan.customPricingLabel?.trim() || "ফ্রি";
   }
-  if (plan.pricingType === "custom") {
+  if (isCustomPlan(plan)) {
     return plan.customPricingLabel?.trim() || "Custom Pricing";
   }
-  const price = getPriceBdt(plan, cycle);
+  // Region is "bd" here, so the symbol follows the plan's own currency.
+  const price = getPlanPrice(plan, cycle, "bd");
   if (price == null) return plan.customPricingLabel?.trim() || "—";
-  return `৳${price.toLocaleString()}`;
+  if (price.amount === 0) return "ফ্রি";
+  return formatMoney(price);
 }
 
 function getPriceSuffix(plan: PricingPlan, cycle: BillingCycle): string | null {
-  if (plan.pricingType === "free_trial") {
+  if (isFreePlan(plan)) {
     return plan.trialDays ? `${plan.trialDays} দিন বিনামূল্যে` : null;
   }
-  if (plan.pricingType === "custom") return null;
+  if (isCustomPlan(plan)) return null;
+  const price = getPlanPrice(plan, cycle, "bd");
+  if (price == null || price.amount === 0) return null;
   return CYCLE_SUFFIX[cycle];
 }
 
@@ -58,10 +63,7 @@ interface Props {
 }
 
 export default function PricingPlans({ plans, dashboardUrl }: Props) {
-  const paidPlans = plans.filter((p) => p.pricingType !== "free_trial");
-
-  console.log(plans, "plans");
-  
+  const paidPlans = plans.filter((p) => !isFreePlan(p));
 
   const availableCycles: BillingCycle[] = Array.from(
     new Set(paidPlans.flatMap((p) => p.billingOptions)),
@@ -182,7 +184,7 @@ export default function PricingPlans({ plans, dashboardUrl }: Props) {
                   {/* CTA */}
                   <a
                     target="_blank"
-                    href={`${dashboardUrl || "#"}/settings/billing-and-plans`}
+                    href={getPlanCtaHref(plan, dashboardUrl)}
                     className={`btn-cta mt-8 flex h-14 items-center justify-center rounded-full text-[15px] font-medium sm:mt-10 sm:h-16 sm:text-[16px] ${
                       isPrimary
                         ? "btn-cta--primary text-white"

@@ -1,6 +1,6 @@
 "use server";
 
-import type { Region } from "./region";
+import type { Region } from "./geo";
 
 export type BillingCycle = "monthly" | "half-yearly" | "yearly";
 
@@ -19,7 +19,8 @@ export interface PricingPlan {
   pricingType: string;
   billingOptions: BillingCycle[];
   features: string[];
-  cta: { label: string; type: string };
+  /** `url` lets the API override the CTA target per plan (e.g. per country). */
+  cta: { label: string; type: string; url?: string };
   highlight: boolean;
   customPricingLabel?: string;
   trialDays?: number | null;
@@ -28,7 +29,13 @@ export interface PricingPlan {
   reviewsPerMonth?: number;
 }
 
-const API_BASE_URL = process.env.NEXT_SERVER_API_URL ?? "/api";
+// Accept either spelling — deployments have shipped with both. A relative
+// value is useless here: this runs on the server, where fetch needs an origin.
+const API_BASE_URL = (
+  process.env.NEXT_SERVER_API_URL ??
+  process.env.NEXT_PUBLIC_SERVER_API_URL ??
+  ""
+).replace(/\/+$/, "");
 
 const bdFallbackPlans: PricingPlan[] = [
   {
@@ -205,7 +212,17 @@ function sortPlans(plans: PricingPlan[]): PricingPlan[] {
 }
 
 export async function fetchPlans(region: Region): Promise<PricingPlan[]> {
-  const fallback = region === "bd" ? bdFallbackPlans : globalFallbackPlans;
+  const fallback = sortPlans(
+    region === "bd" ? bdFallbackPlans : globalFallbackPlans,
+  );
+
+  if (!API_BASE_URL.startsWith("http")) {
+    console.error(
+      "[pricing] NEXT_SERVER_API_URL is missing or not absolute — serving fallback plans.",
+    );
+    return fallback;
+  }
+
   try {
     const res = await fetch(
       `${API_BASE_URL}/auth/pricing-plans?region=${region}`,
@@ -214,12 +231,16 @@ export async function fetchPlans(region: Region): Promise<PricingPlan[]> {
         cache: "no-store",
       },
     );
-    if (!res.ok) return sortPlans([]);
+    if (!res.ok) {
+      console.error(`[pricing] API responded ${res.status} for region ${region}`);
+      return fallback;
+    }
     const json = (await res.json()) as { data?: PricingPlan[] };
     const plans = json.data;
-    if (!Array.isArray(plans) || plans.length === 0) return sortPlans([]);
+    if (!Array.isArray(plans) || plans.length === 0) return fallback;
     return sortPlans(plans);
-  } catch {
-    return sortPlans([]);
+  } catch (error) {
+    console.error("[pricing] plan fetch failed:", error);
+    return fallback;
   }
 }

@@ -4,7 +4,14 @@ import { useState } from "react";
 import Image from "next/image";
 import { ChevronRight } from "./Icons";
 import type { PricingPlan, BillingCycle } from "@/lib/pricing";
-import type { Region } from "@/lib/region";
+import type { Region } from "@/lib/geo";
+import {
+  formatMoney,
+  getPlanCtaHref,
+  getPlanPrice,
+  isCustomPlan,
+  isFreePlan,
+} from "@/lib/currency";
 
 const CYCLE_LABEL: Record<BillingCycle, string> = {
   monthly: "Monthly",
@@ -32,38 +39,25 @@ function getTierColor(plan: PricingPlan, index: number): string {
   return TIER_COLORS[key] ?? TIER_COLOR_FALLBACK;
 }
 
-function getPriceValue(
-  plan: PricingPlan,
-  cycle: BillingCycle,
-  region: Region,
-): number | null {
-  const useEur = region === "eur";
-  if (cycle === "monthly")
-    return useEur
-      ? (plan.monthlyPriceEur ?? plan.monthlyPrice ?? null)
-      : (plan.monthlyPrice ?? null);
-  if (cycle === "half-yearly")
-    return useEur
-      ? (plan.halfYearlyPriceEur ?? plan.halfYearlyPrice ?? null)
-      : (plan.halfYearlyPrice ?? null);
-  return useEur
-    ? (plan.yearlyPriceEur ?? plan.yearlyPrice ?? null)
-    : (plan.yearlyPrice ?? null);
-}
-
 function formatPrice(
   plan: PricingPlan,
   cycle: BillingCycle,
   region: Region,
 ): string {
-  if (plan.pricingType === "free_trial")
-    return plan.customPricingLabel?.trim() || "Free";
-  if (plan.pricingType === "custom")
+  if (isFreePlan(plan)) return plan.customPricingLabel?.trim() || "Free";
+  if (isCustomPlan(plan))
     return plan.customPricingLabel?.trim() || "Custom Pricing";
-  const value = getPriceValue(plan, cycle, region);
-  if (value == null) return plan.customPricingLabel?.trim() || "—";
-  const symbol = region === "eur" ? "€" : "$";
-  return `${symbol}${value.toLocaleString()}`;
+  const price = getPlanPrice(plan, cycle, region);
+  if (price == null) return plan.customPricingLabel?.trim() || "—";
+  if (price.amount === 0) return "Free";
+  return formatMoney(price);
+}
+
+/** Only paid plans carry a billing period under the price. */
+function hasPeriod(plan: PricingPlan, cycle: BillingCycle, region: Region) {
+  if (isFreePlan(plan) || isCustomPlan(plan)) return false;
+  const price = getPlanPrice(plan, cycle, region);
+  return price != null && price.amount > 0;
 }
 
 function getFeatures(plan: PricingPlan): string[] {
@@ -86,7 +80,7 @@ export default function PricingPlansEn({
   initialRegion,
   dashboardUrl,
 }: Props) {
-  const paidPlans = plans.filter((p) => p.pricingType !== "free_trial");
+  const paidPlans = plans.filter((p) => !isFreePlan(p));
 
   const availableCycles: BillingCycle[] = Array.from(
     new Set(paidPlans.flatMap((p) => p.billingOptions)),
@@ -150,10 +144,7 @@ export default function PricingPlansEn({
         >
           {plans.map((plan, index) => {
             const priceText = formatPrice(plan, tab, region);
-            const period =
-              plan.pricingType === "free_trial" || plan.pricingType === "custom"
-                ? null
-                : CYCLE_PERIOD[tab];
+            const period = hasPeriod(plan, tab, region) ? CYCLE_PERIOD[tab] : null;
             const features = getFeatures(plan);
             const tierColor = getTierColor(plan, index);
             const isPrimary = plan.highlight || plan.cta.type === "primary";
@@ -233,7 +224,7 @@ export default function PricingPlansEn({
                 <div className="p-5 sm:p-6 lg:p-7">
                   <a
                     target="_blank"
-                    href={`${dashboardUrl || "#"}/settings/billing-and-plans`}
+                    href={getPlanCtaHref(plan, dashboardUrl)}
                     className={`btn-cta flex h-14 items-center justify-center rounded-full text-[15px] font-medium sm:h-16 sm:text-[16px] ${
                       isPrimary
                         ? "btn-cta--primary text-white"
