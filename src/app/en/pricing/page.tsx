@@ -16,7 +16,7 @@ export default async function PricingPageEn() {
   }
 
   const plans = await fetchPlans(region);
-  const dashboardUrl = process.env.NEXT_DASHBOARD_URL ?? "";
+    const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL ?? "";
 
   return (
     <div className="flex flex-col bg-white min-h-screen">
