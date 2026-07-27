@@ -9,18 +9,18 @@ const STEPS = [
 
 export default function CampaignHowItWorks() {
   return (
-    <section className="w-full px-5 pt-10 sm:px-8 sm:pt-12 lg:px-12 xl:px-24 2xl:pt-[100px]">
+    <section className="w-full px-5 pt-8 sm:px-8 sm:pt-10 lg:px-12 xl:px-24 2xl:pt-20">
       <div className="mx-auto w-full max-w-[1248px] text-center">
         <div>
           <h2 className="h-sec">
-            So <span className="g">easy, anyone</span> can do it
+            So <span className="g">Easy, Anyone</span> Can Do It
           </h2>
-          <p className="lead mt-4">No tech skills. Nothing to install.</p>
+          <p className="lead mt-3">No tech skills. Nothing to install.</p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-5 text-left sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-11 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((step, i) => (
-            <div key={step.title} className="step">
+            <div key={step.title} className="step justify-center text-center">
               <span className="step-num">{i + 1}</span>
               <h3 className="step-title">{step.title}</h3>
               <p className="step-sub">{step.sub}</p>
@@ -28,7 +28,7 @@ export default function CampaignHowItWorks() {
           ))}
         </div>
 
-        <div className="mt-14 flex justify-center">
+        <div className="mt-11 flex justify-center">
           <CampaignCta label="Start free — takes 2 minutes" />
         </div>
       </div>

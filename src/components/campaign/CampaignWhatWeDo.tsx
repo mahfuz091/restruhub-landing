@@ -2,17 +2,17 @@ import Image from "next/image";
 
 export default function CampaignWhatWeDo() {
   return (
-    <section className="w-full px-5 pt-10 sm:px-8 sm:pt-12 lg:px-12 xl:px-24 2xl:pt-[100px]">
+    <section className="w-full px-5 pt-8 sm:px-8 sm:pt-10 lg:px-12 xl:px-24 2xl:pt-20">
       <div className="mx-auto w-full max-w-[1120px]">
-        <div className="max-w-[720px]">
+        <div className="mx-auto max-w-[720px] text-center">
           <h2 className="h-sec">
-            What <span className="g">RestruHub</span> does
+            What <span className="g">RestruHub</span> Does
           </h2>
-          <p className="lead mt-4">Two simple things, both on autopilot.</p>
+          <p className="lead mt-3">Two simple things, both on autopilot.</p>
         </div>
 
         {/* Row 1: text left, image right */}
-        <div className="mt-12 flex flex-col items-center gap-10 sm:mt-8 lg:flex-row lg:items-center lg:gap-12 2xl:mt-12 2xl:gap-[103px]">
+        <div className="mt-10 flex flex-col items-center gap-8 sm:mt-6 lg:flex-row lg:items-center lg:gap-10 2xl:mt-10 2xl:gap-[82px]">
           <div className="w-full lg:flex-1">
             <Image
               src="/images/campaign/does-icon-1.svg"
@@ -38,7 +38,7 @@ export default function CampaignWhatWeDo() {
         </div>
 
         {/* Row 2: image left, text right */}
-        <div className="mt-14 flex flex-col-reverse items-center gap-10 sm:mt-8 lg:flex-row lg:items-center lg:gap-12 2xl:mt-14 2xl:gap-[103px]">
+        <div className="mt-11 flex flex-col-reverse items-center gap-8 sm:mt-6 lg:flex-row lg:items-center lg:gap-10 2xl:mt-11 2xl:gap-[82px]">
           <div className="feature-card w-full lg:w-[430px] lg:flex-shrink-0 2xl:w-[518px]">
             <Image
               src="/images/campaign/does-2.png"
@@ -57,8 +57,8 @@ export default function CampaignWhatWeDo() {
             />
             <h3 className="h-feat mt-4">Shows what guests think</h3>
             <p className="lead mt-4 max-w-[499px]">
-              One easy score for your restaurant — what&apos;s great, and what
-              to fix.
+              One easy score for your restaurant what&apos;s great, and what to
+              fix.
             </p>
           </div>
         </div>

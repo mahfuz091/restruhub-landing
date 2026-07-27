@@ -36,7 +36,7 @@ const SOCIALS = [
 /** Campaign-only footer: legal + socials, no sitemap columns. */
 export default function CampaignFooter() {
   return (
-    <footer className="w-full px-5 pt-[80px] pb-8 sm:px-6 lg:px-[60px]">
+    <footer className="w-full px-5 pt-16 pb-6 sm:px-6 lg:px-[60px]">
       <div className="footer-bar mx-auto flex w-full max-w-[1320px] flex-col items-center justify-between gap-4 sm:flex-row">
         <p className="footer-copy">© 2026 RestruHub. All rights reserved.</p>
         <div className="footer-links">

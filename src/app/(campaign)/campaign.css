@@ -100,12 +100,12 @@
 .campaign .cta {
   font-size: 18px;
   line-height: 26px;
-  padding: 19px 32px;
+  padding: 16px 32px;
 }
 .campaign .cta-sm {
   font-size: 16px;
   line-height: 24px;
-  padding: 13px 24px;
+  padding: 11px 24px;
 }
 
 /* fill that wipes across on hover */
@@ -198,7 +198,7 @@
   border-radius: 60px;
   /* Vertical padding tracks home rhythm through the 1024–1536 band
      (~48–70px) instead of ballooning to 107px; horizontal unchanged. */
-  padding: clamp(40px, 4.5vw, 88px) clamp(24px, 7vw, 100px);
+  padding: clamp(32px, 3.6vw, 70px) clamp(24px, 7vw, 100px);
 }
 .campaign .panel-1 {
   background: var(--c-panel-1);
@@ -207,7 +207,7 @@
    tablet/laptop band; mobile (<640) and 2xl (≥1536) keep base .panel scale. */
 @media (min-width: 640px) and (max-width: 1535px) {
   .campaign .panel-1 {
-    padding: 40px 40px;
+    padding: 32px 40px;
   }
 }
 .campaign .panel-2 {
@@ -217,7 +217,7 @@
    tablet/laptop band; mobile (<640) and 2xl (≥1536) keep base .panel scale. */
 @media (min-width: 640px) and (max-width: 1535px) {
   .campaign .panel-2 {
-    padding: 40px 40px;
+    padding: 32px 40px;
   }
 }
 
@@ -254,11 +254,11 @@
 .campaign .step {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   background: var(--c-ink-green);
   border-radius: 28px;
-  padding: 24px;
-  min-height: 183px;
+  padding: 20px;
+  min-height: 146px;
 }
 .campaign .step-num {
   font-family: var(--font-bricolage), sans-serif;
@@ -288,10 +288,10 @@
   border: 1px solid #ececec;
   border-radius: 16px;
   background: #fff;
-  padding: 24px;
+  padding: 20px;
 }
 .campaign .faq-q {
-  margin: 0 0 16px;
+  margin: 0 0 12px;
   font-weight: 600;
   font-size: clamp(18px, 1.9vw, 24px);
   line-height: 1.33;
@@ -309,7 +309,7 @@
 .campaign .footer-bar {
   background: var(--c-green-dark);
   border-radius: 16px;
-  padding: 20px 28px;
+  padding: 16px 24px;
 }
 .campaign .footer-copy {
   /* margin: 0; */

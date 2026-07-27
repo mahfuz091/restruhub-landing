@@ -140,12 +140,19 @@ export default function CampaignAnimations() {
 
         // text / interactive blocks: staggered fade-up
         const blocks = sec.querySelectorAll(
-          ".h-hero, .h-sec, .h-feat, .badge, .lead, .cta, .tick, .step, .faq-item, .note",
+          ".h-hero, .h-sec, .h-feat, .badge, .lead, .cta, .tick, .step, .note",
         );
         fadeUp(blocks, {
           trigger: sec,
           start: "top bottom-=60",
           stagger: 0.09,
+        });
+
+        // FAQ rows: the list is taller than the viewport, so a section-level
+        // trigger would burn the reveal on rows the reader can't see yet —
+        // each row gets its own trigger instead.
+        sec.querySelectorAll(".faq-item").forEach((item) => {
+          fadeUp([item], { y: 28, duration: 0.7 });
         });
       });
 

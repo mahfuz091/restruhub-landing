@@ -23,7 +23,7 @@ export default function CampaignHeader() {
         <CampaignCta
           label="Try Free"
           size="sm"
-          style={{ padding: "15px 32px", fontSize: "18px" }}
+          style={{ padding: "12px 28px", fontSize: "17px" }}
         />
       </div>
     </header>

@@ -9,9 +9,10 @@ import CampaignFaq from "@/components/campaign/CampaignFaq";
 import CampaignFinalCta from "@/components/campaign/CampaignFinalCta";
 
 export const metadata: Metadata = {
-  title: "RestruHub — We reply to your restaurant's Google reviews for you",
+  title:
+    "RestruHub — Never let another review on your restaurant sit unanswered on Google",
   description:
-    "RestruHub automatically replies to every Google review for your restaurant, in your own voice. Try it free for 14 days — no credit card.",
+    "RestruHub answers every Google review for your restaurant automatically, in your own voice, and shows you what guests really think. Free for 14 days, no card required.",
 };
 
 export default function CampaignPage() {
