@@ -14,7 +14,7 @@ export default function CampaignFinalCta() {
         <p className="lead mt-4 w-full max-w-[650px]">
           Let RestruHub handle them for you starting today, free.
         </p>
-        <CampaignCta label="Try it free for 7 days" className="mt-6" />
+        <CampaignCta label="Try it free for 14 days" className="mt-6" />
         <p className="note mt-5">No credit card · Set up in minutes</p>
       </div>
     </section>

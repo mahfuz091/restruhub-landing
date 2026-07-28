@@ -5,6 +5,7 @@ export type { Region };
 
 const CACHE_KEY = "app_user_region";
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
+const CACHE_TTL_S = CACHE_TTL_MS / 1000;
 
 // Timezones that unambiguously map to Bangladesh
 const BD_TIMEZONES = new Set(["Asia/Dhaka", "Asia/Dacca"]);
@@ -39,6 +40,16 @@ function writeCache(region: Region): void {
     );
   } catch {
     // storage unavailable — ignore
+  }
+
+  // Mirror into a cookie so server components see the same answer. The browser
+  // knows the timezone; the server only sees headers, which say "global" for a
+  // Bangladeshi visitor whose browser locale is English. Without this the two
+  // detectors disagree and each guards its page differently.
+  try {
+    document.cookie = `${CACHE_KEY}=${region}; path=/; max-age=${CACHE_TTL_S}; samesite=lax`;
+  } catch {
+    // cookies unavailable — ignore
   }
 }
 

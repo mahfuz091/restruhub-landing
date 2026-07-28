@@ -48,7 +48,7 @@ export default function CampaignBenefits() {
                 </div>
               ))}
             </div>
-            <CampaignCta label="Try it free for 7 days" className="mt-6" />
+            <CampaignCta label="Try it free for 14 days" className="mt-6" />
           </div>
           {/* Image */}
           <div className="w-full lg:w-[500px] lg:flex-shrink-0 2xl:w-[518px]">

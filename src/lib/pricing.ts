@@ -15,7 +15,8 @@ export interface PricingPlan {
   monthlyPriceEur?: number | null;
   halfYearlyPriceEur?: number | null;
   yearlyPriceEur?: number | null;
-  currency: "USD" | "EUR" | "BDT";
+  /** ISO-4217 code straight from the API — drives the symbol shown. */
+  currency: string;
   pricingType: string;
   billingOptions: BillingCycle[];
   features: string[];

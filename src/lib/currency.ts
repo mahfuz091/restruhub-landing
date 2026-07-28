@@ -1,12 +1,22 @@
 import type { BillingCycle, PricingPlan } from "./pricing";
 import type { Region } from "./geo";
 
-export type CurrencyCode = "USD" | "EUR" | "BDT";
+/** Whatever ISO-4217 code the API sends. Not a closed set — the API owns it. */
+export type CurrencyCode = string;
 
-const CURRENCY_SYMBOL: Record<CurrencyCode, string> = {
+/**
+ * Symbols we can render. A code that is missing here is not an error: the
+ * amount is printed with the bare ISO code instead, so a new currency added
+ * server-side shows up correctly rather than wearing the wrong symbol.
+ */
+const CURRENCY_SYMBOL: Record<string, string> = {
   USD: "$",
   EUR: "€",
   BDT: "৳",
+  GBP: "£",
+  INR: "₹",
+  AUD: "A$",
+  CAD: "C$",
 };
 
 export interface PlanPrice {
@@ -14,8 +24,10 @@ export interface PlanPrice {
   currency: CurrencyCode;
 }
 
+/** Trusts the API's code; only normalises casing/whitespace. */
 function normalizeCurrency(value: string | undefined): CurrencyCode {
-  return value === "EUR" || value === "BDT" ? value : "USD";
+  const code = value?.trim().toUpperCase();
+  return code || "USD";
 }
 
 function baseAmount(plan: PricingPlan, cycle: BillingCycle): number | null {
@@ -32,26 +44,32 @@ function eurAmount(plan: PricingPlan, cycle: BillingCycle): number | null {
 
 /**
  * Resolves the amount together with the currency it is actually denominated
- * in. The two are never mixed: when a EUR market has no `*PriceEur` value we
- * fall back to the plan's base amount AND its base currency, instead of
- * stamping a € sign onto a USD figure.
+ * in. `plan.currency` from the API is the single source of truth for the
+ * symbol — the presence of a `*PriceEur` field is not a currency signal, since
+ * the API mirrors the base amount into those fields for USD-priced plans. The
+ * EUR amount is only used when the API also says the plan is priced in EUR.
  */
 export function getPlanPrice(
   plan: PricingPlan,
   cycle: BillingCycle,
   region: Region,
 ): PlanPrice | null {
-  if (region === "eur") {
+  const currency = normalizeCurrency(plan.currency);
+
+  if (region === "eur" && currency === "EUR") {
     const eur = eurAmount(plan, cycle);
-    if (eur != null) return { amount: eur, currency: "EUR" };
+    if (eur != null) return { amount: eur, currency };
   }
+
   const base = baseAmount(plan, cycle);
   if (base == null) return null;
-  return { amount: base, currency: normalizeCurrency(plan.currency) };
+  return { amount: base, currency };
 }
 
 export function formatMoney({ amount, currency }: PlanPrice): string {
-  return `${CURRENCY_SYMBOL[currency]}${amount.toLocaleString("en-US")}`;
+  const value = amount.toLocaleString("en-US");
+  const symbol = CURRENCY_SYMBOL[currency];
+  return symbol ? `${symbol}${value}` : `${currency} ${value}`;
 }
 
 /** API sends "free" for the zero-cost tier; the fallback data uses "free_trial". */
