@@ -29,8 +29,6 @@ export default function PricingPage() {
         return;
       }
 
-      console.log("Fetching pricing plans for region:", region);
-
       const pricingPlans = await fetchPlans("bd");
 
       setPlans(pricingPlans);

@@ -43,24 +43,24 @@ function eurAmount(plan: PricingPlan, cycle: BillingCycle): number | null {
 }
 
 /**
- * Resolves the amount together with the currency it is actually denominated
- * in. `plan.currency` from the API is the single source of truth for the
- * symbol — the presence of a `*PriceEur` field is not a currency signal, since
- * the API mirrors the base amount into those fields for USD-priced plans. The
- * EUR amount is only used when the API also says the plan is priced in EUR.
+ * Resolves the amount together with the currency it is actually denominated in.
+ * When region is "eur", returns the EUR price if available (or base price)
+ * formatted with the EUR currency code so the Euro symbol (€) is displayed.
  */
 export function getPlanPrice(
   plan: PricingPlan,
   cycle: BillingCycle,
   region: Region,
 ): PlanPrice | null {
-  const currency = normalizeCurrency(plan.currency);
-
-  if (region === "eur" && currency === "EUR") {
+  if (region === "eur") {
     const eur = eurAmount(plan, cycle);
-    if (eur != null) return { amount: eur, currency };
+    if (eur != null) return { amount: eur, currency: "EUR" };
+    const base = baseAmount(plan, cycle);
+    if (base != null) return { amount: base, currency: "EUR" };
+    return null;
   }
 
+  const currency = normalizeCurrency(plan.currency);
   const base = baseAmount(plan, cycle);
   if (base == null) return null;
   return { amount: base, currency };

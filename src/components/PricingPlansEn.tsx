@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ChevronRight } from "./Icons";
 import type { PricingPlan, BillingCycle } from "@/lib/pricing";
 import type { Region } from "@/lib/geo";
+import { getRegion } from "@/lib/client-side-region";
 import {
   formatMoney,
   getPlanCtaHref,
@@ -89,7 +90,15 @@ export default function PricingPlansEn({
   );
 
   const [tab, setTab] = useState<BillingCycle>(availableCycles[0] ?? "monthly");
-  const [region] = useState<Region>(initialRegion);
+  const [region, setRegion] = useState<Region>(initialRegion);
+
+  useEffect(() => {
+    getRegion()
+      .then((r) => {
+        if (r === "eur") setRegion("eur");
+      })
+      .catch(() => {});
+  }, []);
 
   const gridCols =
     plans.length <= 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3";

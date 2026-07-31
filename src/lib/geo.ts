@@ -8,9 +8,13 @@ export type Region = "bd" | "eur" | "global";
 
 /** EU + EEA/EFTA country codes — the markets that are billed in EUR. */
 export const EUR_COUNTRIES = new Set([
+  // EU / EEA / EFTA
   "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR",
   "GR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL",
   "PT", "RO", "SE", "SI", "SK", "CH", "NO", "IS", "LI",
+  // Other European countries & territories
+  "GB", "AD", "AL", "BA", "BY", "GI", "FO", "GG", "IM", "JE", "MC",
+  "MD", "ME", "MK", "RS", "SM", "UA", "VA", "XK", "AX", "SJ",
 ]);
 
 /**
