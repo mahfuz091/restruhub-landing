@@ -15,15 +15,6 @@ const CURRENCY_SYMBOL: Record<DisplayCurrency, string> = {
   BDT: "৳",
 };
 
-function getFeatures(plan: PricingPlan): string[] {
-  const extras: string[] = [];
-  if (typeof plan.maxUsers === "number")
-    extras.push(`Up to ${plan.maxUsers.toLocaleString()} users`);
-  if (typeof plan.reviewsPerMonth === "number")
-    extras.push(`Up to ${plan.reviewsPerMonth.toLocaleString()} reviews/month`);
-  return [...extras, ...plan.features];
-}
-
 interface Props {
   plans: PricingPlan[];
   initialRegion: Region;
@@ -185,16 +176,15 @@ export default function PricingPlansEn({
             data-split
             className="font-[family-name:var(--font-radio-canada-big)] font-bold text-[28px] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px] leading-[1.12] tracking-[-0.01em]"
           >
-            Choose the{" "}
-            <span className="text-[var(--color-brand)]">Right Plan</span> for
-            Your Needs
+            Choose a plan that&apos;s{" "}
+            <span className="text-[var(--color-brand)]">right for you</span>
           </h2>
           <p
             data-reveal
             className="mx-auto mt-4 sm:mt-5 max-w-[600px] text-[14px] text-[var(--color-ink-soft)] sm:text-[16px] leading-[22px] sm:leading-[26px]"
           >
-            Take your business to the next level with flexible, transparent
-            pricing adaptable to your needs.
+            Choose a plan that works best for your team - upgrade, downgrade, or
+            cancel anytime.
           </p>
         </div>
 
@@ -267,13 +257,13 @@ export default function PricingPlansEn({
             const { priceStr, symbolStr, isFree } = formatPrice(plan);
             const originalPrice = calculateOriginalPrice(plan);
             const isHighlighted = Boolean(plan.isPopular);
-            const features = getFeatures(plan);
             const ctaHref = getPlanCtaHref(plan, dashboardUrl, billingCycle);
 
             // Header for feature list
             const getFeatureHeader = () => {
-              if (planIndex === 1) return "EVERYTHING IN STARTER, PLUS:";
-              if (planIndex === 2) return "EVERYTHING IN PROFESSIONAL, PLUS:";
+              if (planIndex > 0 && sortedPlans[planIndex - 1]?.name) {
+                return `EVERYTHING IN ${sortedPlans[planIndex - 1].name.toUpperCase()}, PLUS:`;
+              }
               return null;
             };
             const featureHeader = getFeatureHeader();
@@ -348,7 +338,7 @@ export default function PricingPlansEn({
 
                   {/* Features List */}
                   <ul className="space-y-3.5 mb-8">
-                    {features.map((feature, i) => (
+                    {plan.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-3">
                         <div className="w-5 h-5 rounded-full bg-[#D1F4E0] text-[#047857] flex items-center justify-center shrink-0 mt-0.5">
                           <svg

@@ -4,26 +4,13 @@ import { useState } from "react";
 import type { PricingPlan, BillingCycle } from "@/lib/pricing";
 import { getPlanCtaHref, isFreePlan } from "@/lib/currency";
 
-const CYCLE_LABEL: Record<BillingCycle, string> = {
-  monthly: "Monthly",
-  "half-yearly": "Half-Yearly",
-  yearly: "Yearly",
-};
+type DisplayCurrency = "USD" | "EUR" | "BDT";
 
-const CYCLE_SUFFIX: Record<BillingCycle, string> = {
-  monthly: "month",
-  "half-yearly": "6 months",
-  yearly: "year",
+const CURRENCY_SYMBOL: Record<DisplayCurrency, string> = {
+  USD: "$",
+  EUR: "€",
+  BDT: "৳",
 };
-
-function getFeatures(plan: PricingPlan): string[] {
-  const extras: string[] = [];
-  if (typeof plan.maxUsers === "number")
-    extras.push(`সর্বোচ্চ ${plan.maxUsers} জন ব্যবহারকারী`);
-  if (typeof plan.reviewsPerMonth === "number")
-    extras.push(`${plan.reviewsPerMonth} রিভিউ/মাস`);
-  return [...extras, ...plan.features];
-}
 
 interface Props {
   plans: PricingPlan[];
@@ -40,7 +27,9 @@ export default function PricingPlans({ plans, dashboardUrl }: Props) {
   );
 
   const [billingCycle, setBillingCycle] = useState<BillingCycle>(
-    availableCycles[0] ?? "yearly",
+    availableCycles.includes("monthly")
+      ? "monthly"
+      : availableCycles[0] ?? "monthly",
   );
 
   const sortedPlans = [...plans].sort(
@@ -104,12 +93,14 @@ export default function PricingPlans({ plans, dashboardUrl }: Props) {
         isFree: false,
       };
     }
+    const currency = (plan.currency?.toUpperCase() as DisplayCurrency) || "BDT";
+    const symbol = CURRENCY_SYMBOL[currency] ?? "৳";
     return {
       priceStr: price.toLocaleString("en-US", {
         minimumFractionDigits: price % 1 === 0 ? 0 : 2,
         maximumFractionDigits: 2,
       }),
-      symbolStr: "৳",
+      symbolStr: symbol,
       isFree: false,
     };
   };
@@ -124,52 +115,52 @@ export default function PricingPlans({ plans, dashboardUrl }: Props) {
         <div className="mx-auto max-w-[700px] text-center">
           <h2
             data-split
-            className="font-[family-name:var(--font-radio-canada-big)] font-bold text-[28px] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] 2xl:text-[52px] leading-[1.12] tracking-[-0.01em]"
+            className="font-[family-name:var(--font-radio-canada-big)] font-bold text-[28px] text-[var(--color-ink)] sm:text-[36px] md:text-[44px] lg:text-[52px] leading-[1.12] tracking-[-0.01em]"
           >
-            আপনার প্রয়োজনে{" "}
-            <span className="text-[var(--color-brand)]">সঠিক প্ল্যান</span> বেছে
-            নিন
+            Choose a plan that&apos;s{" "}
+            <span className="text-[var(--color-brand)]">right for you</span>
           </h2>
           <p
             data-reveal
             className="mx-auto mt-4 sm:mt-5 max-w-[600px] text-[14px] text-[var(--color-ink-soft)] sm:text-[16px] leading-[22px] sm:leading-[26px]"
           >
-            নমনীয় ও স্বচ্ছ মূল্য নির্ধারণ — আপনার ব্যবসার সাথে বাড়তে পারে।
+            Choose a plan that works best for your team - upgrade, downgrade, or
+            cancel anytime.
           </p>
         </div>
 
         {/* Tab toggle */}
-        {availableCycles.length > 1 && (
-          <div className="flex justify-center mt-8 sm:mt-10 mb-10">
-            <div className="inline-flex items-center bg-white p-1 rounded-full border border-neutral-200/80 shadow-sm">
-              {availableCycles.map((cycle) => {
-                const isYearly = cycle === "yearly";
-                const isSelected = billingCycle === cycle;
-                return (
-                  <button
-                    key={cycle}
-                    type="button"
-                    onClick={() => setBillingCycle(cycle)}
-                    className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-200 cursor-pointer flex items-center gap-2 ${
-                      isSelected
-                        ? "bg-[#064E3B] text-white shadow-sm"
-                        : "text-neutral-600 hover:text-neutral-900"
-                    }`}
-                  >
-                    <span>{CYCLE_LABEL[cycle]}</span>
-                    {isYearly &&
-                      yearlyOfferPercentage != null &&
-                      yearlyOfferPercentage > 0 && (
-                        <span className="bg-[#D1FAE5] text-[#059669] text-xs font-bold px-2.5 py-0.5 rounded-full">
-                          Save {yearlyOfferPercentage}%
-                        </span>
-                      )}
-                  </button>
-                );
-              })}
-            </div>
+        <div className="flex justify-center mt-8 sm:mt-10 mb-10">
+          <div className="inline-flex items-center bg-white p-1 rounded-full border border-neutral-200/80 shadow-sm">
+            <button
+              type="button"
+              onClick={() => setBillingCycle("monthly")}
+              className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-200 cursor-pointer ${
+                billingCycle === "monthly"
+                  ? "bg-[#064E3B] text-white shadow-sm"
+                  : "text-neutral-600 hover:text-neutral-900"
+              }`}
+            >
+              Monthly
+            </button>
+            <button
+              type="button"
+              onClick={() => setBillingCycle("yearly")}
+              className={`px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+                billingCycle === "yearly"
+                  ? "bg-[#064E3B] text-white shadow-sm"
+                  : "text-neutral-600 hover:text-neutral-900"
+              }`}
+            >
+              <span>Yearly</span>
+              {yearlyOfferPercentage != null && yearlyOfferPercentage > 0 && (
+                <span className="bg-[#D1FAE5] text-[#059669] text-xs font-bold px-2.5 py-0.5 rounded-full">
+                  Save {yearlyOfferPercentage}%
+                </span>
+              )}
+            </button>
           </div>
-        )}
+        </div>
 
         {/* Plan cards */}
         <div
@@ -180,13 +171,13 @@ export default function PricingPlans({ plans, dashboardUrl }: Props) {
             const { priceStr, symbolStr, isFree } = formatPrice(plan);
             const originalPrice = calculateOriginalPrice(plan);
             const isHighlighted = Boolean(plan.isPopular);
-            const features = getFeatures(plan);
             const ctaHref = getPlanCtaHref(plan, dashboardUrl, billingCycle);
 
             // Header for feature list
             const getFeatureHeader = () => {
-              if (planIndex === 1) return "EVERYTHING IN FREE TRIAL, PLUS:";
-              if (planIndex === 2) return "EVERYTHING IN PREVIOUS PLAN, PLUS:";
+              if (planIndex > 0 && sortedPlans[planIndex - 1]?.name) {
+                return `EVERYTHING IN ${sortedPlans[planIndex - 1].name.toUpperCase()}, PLUS:`;
+              }
               return null;
             };
             const featureHeader = getFeatureHeader();
@@ -241,7 +232,7 @@ export default function PricingPlans({ plans, dashboardUrl }: Props) {
                           {priceStr}
                         </span>
                         <span className="text-neutral-500 text-sm font-normal ml-1">
-                          /{CYCLE_SUFFIX[billingCycle]}
+                          /{billingCycle === "yearly" ? "year" : billingCycle === "half-yearly" ? "6 months" : "month"}
                         </span>
                       </div>
                     )}
@@ -261,7 +252,7 @@ export default function PricingPlans({ plans, dashboardUrl }: Props) {
 
                   {/* Features List */}
                   <ul className="space-y-3.5 mb-8">
-                    {features.map((f, i) => (
+                    {plan.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-3">
                         <div className="w-5 h-5 rounded-full bg-[#D1F4E0] text-[#047857] flex items-center justify-center shrink-0 mt-0.5">
                           <svg
@@ -281,7 +272,7 @@ export default function PricingPlans({ plans, dashboardUrl }: Props) {
                           </svg>
                         </div>
                         <span className="text-sm font-medium text-neutral-700 leading-snug">
-                          {f}
+                          {feature}
                         </span>
                       </li>
                     ))}
