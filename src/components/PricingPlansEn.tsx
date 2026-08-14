@@ -1,65 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
-import { ChevronRight } from "./Icons";
 import type { PricingPlan, BillingCycle } from "@/lib/pricing";
 import type { Region } from "@/lib/geo";
 import { getRegion } from "@/lib/client-side-region";
-import {
-  formatMoney,
-  getPlanCtaHref,
-  getPlanPrice,
-  isCustomPlan,
-  isFreePlan,
-} from "@/lib/currency";
+import { getPlanCtaHref, isFreePlan } from "@/lib/currency";
 
-const CYCLE_LABEL: Record<BillingCycle, string> = {
-  monthly: "Monthly",
-  "half-yearly": "Half-Yearly",
-  yearly: "Yearly",
+type CheckoutCurrency = "usd" | "eur";
+type DisplayCurrency = "USD" | "EUR" | "BDT";
+
+const CURRENCY_SYMBOL: Record<DisplayCurrency, string> = {
+  USD: "$",
+  EUR: "€",
+  BDT: "৳",
 };
-
-const CYCLE_PERIOD: Record<BillingCycle, string> = {
-  monthly: "/Monthly",
-  "half-yearly": "/6 Months",
-  yearly: "/Yearly",
-};
-
-// Tier badge colors keyed by plan order (0=free, 1=starter, 2=pro, 3=enterprise, 4+=fallback)
-const TIER_COLORS: Record<number, string> = {
-  0: "bg-[var(--color-accent)] text-white",
-  1: "bg-[#35ABFF] text-white",
-  2: "bg-[#FF3460] text-white",
-  3: "bg-[#0088FF] text-white",
-};
-const TIER_COLOR_FALLBACK = "bg-[#525252] text-white";
-
-function getTierColor(plan: PricingPlan, index: number): string {
-  const key = plan.order ?? index;
-  return TIER_COLORS[key] ?? TIER_COLOR_FALLBACK;
-}
-
-function formatPrice(
-  plan: PricingPlan,
-  cycle: BillingCycle,
-  region: Region,
-): string {
-  if (isFreePlan(plan)) return plan.customPricingLabel?.trim() || "Free";
-  if (isCustomPlan(plan))
-    return plan.customPricingLabel?.trim() || "Custom Pricing";
-  const price = getPlanPrice(plan, cycle, region);
-  if (price == null) return plan.customPricingLabel?.trim() || "—";
-  if (price.amount === 0) return "Free";
-  return formatMoney(price);
-}
-
-/** Only paid plans carry a billing period under the price. */
-function hasPeriod(plan: PricingPlan, cycle: BillingCycle, region: Region) {
-  if (isFreePlan(plan) || isCustomPlan(plan)) return false;
-  const price = getPlanPrice(plan, cycle, region);
-  return price != null && price.amount > 0;
-}
 
 function getFeatures(plan: PricingPlan): string[] {
   const extras: string[] = [];
@@ -81,32 +35,151 @@ export default function PricingPlansEn({
   initialRegion,
   dashboardUrl,
 }: Props) {
-  const paidPlans = plans.filter((p) => !isFreePlan(p));
-
-  const availableCycles: BillingCycle[] = Array.from(
-    new Set(paidPlans.flatMap((p) => p.billingOptions)),
-  ).filter((c): c is BillingCycle =>
-    ["monthly", "half-yearly", "yearly"].includes(c),
-  );
-
-  const [tab, setTab] = useState<BillingCycle>(availableCycles[0] ?? "monthly");
+  const [billingCycle, setBillingCycle] = useState<BillingCycle>("monthly");
+  const [selectedCurrency, setSelectedCurrency] =
+    useState<CheckoutCurrency>("eur");
   const [region, setRegion] = useState<Region>(initialRegion);
 
   useEffect(() => {
     getRegion()
       .then((r) => {
-        if (r === "eur") setRegion("eur");
+        if (r === "eur") {
+          setRegion("eur");
+          setSelectedCurrency("eur");
+        } else if (r === "global") {
+          setRegion("global");
+          setSelectedCurrency("usd");
+        }
       })
       .catch(() => {});
   }, []);
 
+  const sortedPlans = [...plans].sort(
+    (a, b) => (a.order ?? 0) - (b.order ?? 0),
+  );
+
+  const yearlyOfferPercentage =
+    sortedPlans.find(
+      (p) =>
+        typeof p.yearlyOfferPercentage === "number" &&
+        (p.yearlyOfferPercentage ?? 0) > 0,
+    )?.yearlyOfferPercentage ?? null;
+
+  const showCurrencySelector =
+    region === "global" &&
+    sortedPlans.some(
+      (plan) =>
+        plan.market === "global" &&
+        [
+          plan.monthlyPriceEur,
+          plan.halfYearlyPriceEur,
+          plan.yearlyPriceEur,
+        ].some((value) => value != null),
+    );
+
+  const getDisplayCurrency = (plan: PricingPlan): DisplayCurrency => {
+    if (plan.market === "global") {
+      return selectedCurrency === "eur" ? "EUR" : "USD";
+    }
+    return (plan.currency as DisplayCurrency) || "USD";
+  };
+
+  const getRawYearlyPrice = (plan: PricingPlan): number | null => {
+    if (plan.market === "global" && selectedCurrency === "eur") {
+      return plan.yearlyPriceEur ?? null;
+    }
+    return plan.yearlyPrice ?? null;
+  };
+
+  const calculatePrice = (plan: PricingPlan): number | null => {
+    if (plan.pricingType === "free_trial") return 0;
+    if (plan.market === "global" && selectedCurrency === "eur") {
+      if (billingCycle === "yearly") {
+        const rawYearly = plan.yearlyPriceEur ?? null;
+        if (
+          rawYearly != null &&
+          typeof plan.yearlyOfferPercentage === "number" &&
+          plan.yearlyOfferPercentage > 0
+        ) {
+          return (
+            Math.round(
+              rawYearly * (1 - plan.yearlyOfferPercentage / 100) * 100,
+            ) / 100
+          );
+        }
+        return rawYearly;
+      }
+      if (billingCycle === "half-yearly")
+        return plan.halfYearlyPriceEur ?? null;
+      return plan.monthlyPriceEur ?? null;
+    }
+
+    if (billingCycle === "yearly") {
+      const rawYearly = plan.yearlyPrice ?? null;
+      if (
+        rawYearly != null &&
+        typeof plan.yearlyOfferPercentage === "number" &&
+        plan.yearlyOfferPercentage > 0
+      ) {
+        return (
+          Math.round(rawYearly * (1 - plan.yearlyOfferPercentage / 100) * 100) /
+          100
+        );
+      }
+      return rawYearly;
+    }
+    if (billingCycle === "half-yearly") return plan.halfYearlyPrice ?? null;
+    return plan.monthlyPrice ?? null;
+  };
+
+  const calculateOriginalPrice = (plan: PricingPlan): number | null => {
+    if (billingCycle !== "yearly") return null;
+    if (plan.pricingType === "free_trial") return null;
+    if (
+      typeof plan.yearlyOfferPercentage !== "number" ||
+      plan.yearlyOfferPercentage <= 0
+    ) {
+      return null;
+    }
+
+    return getRawYearlyPrice(plan);
+  };
+
+  const formatPrice = (
+    plan: PricingPlan,
+  ): { priceStr: string; symbolStr: string; isFree: boolean } => {
+    if (
+      plan.pricingType === "free_trial" ||
+      plan.customPricingLabel?.toLowerCase() === "free"
+    ) {
+      return { priceStr: "Free", symbolStr: "", isFree: true };
+    }
+    const price = calculatePrice(plan);
+    if (price == null) {
+      return {
+        priceStr: plan.customPricingLabel || "Custom",
+        symbolStr: "",
+        isFree: false,
+      };
+    }
+    const symbol = CURRENCY_SYMBOL[getDisplayCurrency(plan)] ?? "$";
+    return {
+      priceStr: price.toLocaleString("en-US", {
+        minimumFractionDigits: price % 1 === 0 ? 0 : 2,
+        maximumFractionDigits: 2,
+      }),
+      symbolStr: symbol,
+      isFree: false,
+    };
+  };
+
   const gridCols =
-    plans.length <= 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3";
+    sortedPlans.length <= 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3";
 
   return (
-    <section className="bg-white py-20 2xl:py-[100px]">
-      <div className="mx-auto px-5 sm:px-6 lg:px-0 w-full max-w-[1320px]">
-        {/* heading */}
+    <section className="bg-white py-12 sm:py-16 2xl:py-20">
+      <div className="mx-auto px-5 sm:px-6 lg:px-8 w-full max-w-[1320px]">
+        {/* Header */}
         <div className="mx-auto max-w-[700px] text-center">
           <h2
             data-split
@@ -125,130 +198,214 @@ export default function PricingPlansEn({
           </p>
         </div>
 
-        {/* tab toggle */}
-        {availableCycles.length > 1 && (
-          <div className="flex justify-center mt-8 sm:mt-10">
-            <div className="inline-flex p-1 border border-[#D9D9D9] rounded-full">
-              {availableCycles.map((cycle) => (
+        {/* Top Toggle Control */}
+        <div className="flex flex-col items-center gap-4 mt-8 sm:mt-10 mb-10">
+          <div className="inline-flex items-center bg-white p-1 rounded-full border border-neutral-200/80 shadow-sm">
+            <button
+              type="button"
+              onClick={() => setBillingCycle("monthly")}
+              className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-200 cursor-pointer ${
+                billingCycle === "monthly"
+                  ? "bg-[#064E3B] text-white shadow-sm"
+                  : "text-neutral-600 hover:text-neutral-900"
+              }`}
+            >
+              Monthly
+            </button>
+            <button
+              type="button"
+              onClick={() => setBillingCycle("yearly")}
+              className={`px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+                billingCycle === "yearly"
+                  ? "bg-[#064E3B] text-white shadow-sm"
+                  : "text-neutral-600 hover:text-neutral-900"
+              }`}
+            >
+              <span>Yearly</span>
+              {yearlyOfferPercentage != null && yearlyOfferPercentage > 0 && (
+                <span className="bg-[#D1FAE5] text-[#059669] text-xs font-bold px-2.5 py-0.5 rounded-full">
+                  Save {yearlyOfferPercentage}%
+                </span>
+              )}
+            </button>
+          </div>
+
+          {showCurrencySelector && (
+            <div className="flex items-center gap-2 mt-1">
+              <span className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">
+                Currency:
+              </span>
+              {(
+                [
+                  { value: "eur", symbol: "€ EUR" },
+                  { value: "usd", symbol: "$ USD" },
+                ] as const
+              ).map(({ value, symbol }) => (
                 <button
-                  key={cycle}
-                  onClick={() => setTab(cycle)}
-                  className={`rounded-full px-6 py-2.5 text-[14px] font-medium transition-all duration-300 sm:px-8 sm:text-[16px] ${
-                    tab === cycle
-                      ? "bg-[var(--color-brand-deep)] text-white"
-                      : "text-[var(--color-ink-soft)] hover:text-[var(--color-ink)]"
+                  key={value}
+                  type="button"
+                  onClick={() => setSelectedCurrency(value)}
+                  className={`px-3 py-1 rounded-full text-xs font-semibold transition cursor-pointer ${
+                    selectedCurrency === value
+                      ? "bg-[#064E3B] text-white"
+                      : "bg-white text-neutral-600 border border-neutral-200 hover:bg-neutral-50"
                   }`}
                 >
-                  {CYCLE_LABEL[cycle]}
+                  {symbol}
                 </button>
               ))}
             </div>
-          </div>
-        )}
+          )}
+        </div>
 
-        {/* plan cards */}
+        {/* Pricing Cards Grid */}
         <div
           data-reveal-stagger
-          className={`mt-10 grid grid-cols-1 gap-6 sm:mt-12 sm:gap-5 lg:gap-6 ${gridCols}`}
+          className={`grid grid-cols-1 gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch ${gridCols}`}
         >
-          {plans.map((plan, index) => {
-            const priceText = formatPrice(plan, tab, region);
-            const period = hasPeriod(plan, tab, region) ? CYCLE_PERIOD[tab] : null;
+          {sortedPlans.map((plan, planIndex) => {
+            const { priceStr, symbolStr, isFree } = formatPrice(plan);
+            const originalPrice = calculateOriginalPrice(plan);
+            const isHighlighted = Boolean(plan.isPopular);
             const features = getFeatures(plan);
-            const tierColor = getTierColor(plan, index);
-            const isPrimary = plan.highlight || plan.cta.type === "primary";
+            const ctaHref = getPlanCtaHref(plan, dashboardUrl, billingCycle);
+
+            // Header for feature list
+            const getFeatureHeader = () => {
+              if (planIndex === 1) return "EVERYTHING IN STARTER, PLUS:";
+              if (planIndex === 2) return "EVERYTHING IN PROFESSIONAL, PLUS:";
+              return null;
+            };
+            const featureHeader = getFeatureHeader();
 
             return (
               <div
                 key={plan._id}
-                className={`relative flex flex-col rounded-[20px] border border-[#D9D9D9] ${
-                  plan.highlight
-                    ? "bg-cover bg-center bg-no-repeat"
-                    : "bg-white"
+                className={`flex flex-col justify-between bg-white rounded-[28px] p-7 sm:p-8 transition-all duration-200 relative ${
+                  isHighlighted
+                    ? "border-2 border-[#064E3B] shadow-xl"
+                    : "border border-neutral-200/90 shadow-sm hover:shadow-md"
                 }`}
-                style={
-                  plan.highlight
-                    ? { backgroundImage: "url(/images/pricing-bg.png)" }
-                    : undefined
-                }
               >
-                {/* popular badge */}
-                {plan.highlight && (
-                  <Image
-                    src="/images/most-popular.svg"
-                    alt="Most Popular"
-                    width={131}
-                    height={132}
-                    className="-top-[12px] -right-[12px] z-10 absolute w-[110px] sm:w-[120px] lg:w-[140px] h-auto"
-                  />
+                {/* Floating Most Popular Badge */}
+                {Boolean(plan.isPopular) && (
+                  <div className="absolute -top-3.5 right-8 bg-[#064E3B] text-white text-[11px] font-bold tracking-wider px-4 py-1 rounded-full uppercase shadow-sm">
+                    MOST POPULAR
+                  </div>
                 )}
 
-                {/* header */}
-                <div className="p-5 sm:p-6 lg:p-7">
-                  <span
-                    className={`inline-block rounded-full px-4 py-1.5 text-[12px] font-bold uppercase tracking-wider ${tierColor}`}
-                  >
-                    {plan.name}
-                  </span>
+                <div>
+                  {/* Badge Tag & Save % Badge */}
+                  <div className="flex items-center gap-2 mb-5 flex-wrap">
+                    <div className="bg-[#D1F4E0] text-[#047857] text-[11px] font-bold tracking-wider px-3 py-1 rounded-full uppercase w-fit">
+                      {plan.name}
+                    </div>
+                    {billingCycle === "yearly" &&
+                      typeof plan.yearlyOfferPercentage === "number" &&
+                      plan.yearlyOfferPercentage > 0 && (
+                        <div className="bg-[#FEF3C7] text-[#D97706] text-[11px] font-bold tracking-wider px-2.5 py-1 rounded-full uppercase w-fit">
+                          Save {plan.yearlyOfferPercentage}%
+                        </div>
+                      )}
+                  </div>
 
-                  <div className="mt-4">
-                    <span className="font-bold text-[36px] text-[var(--color-ink)] sm:text-[44px] lg:text-[52px]">
-                      {priceText}
-                    </span>
-                    {period && (
-                      <span className="text-[16px] text-[var(--color-ink-soft)] sm:text-[18px]">
-                        {period}
-                      </span>
+                  {/* Price Display */}
+                  <div className="mb-3">
+                    {isFree ? (
+                      <h3 className="text-4xl font-extrabold text-[#064E3B] tracking-tight">
+                        Free
+                      </h3>
+                    ) : (
+                      <div className="flex items-baseline flex-wrap gap-x-2">
+                        {originalPrice != null && (
+                          <span className="text-lg font-semibold text-neutral-400 line-through">
+                            {symbolStr}
+                            {originalPrice.toLocaleString("en-US")}
+                          </span>
+                        )}
+                        <span className="text-4xl font-extrabold text-neutral-900 tracking-tight">
+                          {symbolStr}
+                          {priceStr}
+                        </span>
+                        <span className="text-neutral-500 text-sm font-normal ml-1">
+                          /{billingCycle === "yearly" ? "year" : "month"}
+                        </span>
+                      </div>
                     )}
                   </div>
-                  <p className="mt-1 text-[14px] text-[var(--color-ink-soft)] sm:text-[15px]">
+
+                  {/* Description */}
+                  <p className="text-sm text-neutral-500 mb-6 leading-relaxed font-normal min-h-[40px]">
                     {plan.description}
                   </p>
-                </div>
 
-                {/* divider */}
-                <div className="bg-[#D9D9D9] mx-5 sm:mx-6 lg:mx-7 h-px" />
+                  {/* Features Header if applicable */}
+                  {featureHeader && (
+                    <p className="text-[11px] font-bold text-neutral-400 uppercase tracking-wider mb-4">
+                      {featureHeader}
+                    </p>
+                  )}
 
-                {/* features */}
-                <div className="flex flex-col flex-1 p-5 sm:p-6 lg:p-7">
-                  <ul className="flex flex-col gap-3.5">
-                    {features.map((f) => (
-                      <li key={f} className="flex items-start gap-3">
-                        <Image
-                          src="/images/check-background.svg"
-                          alt=""
-                          width={22}
-                          height={22}
-                          className="mt-0.5 w-[22px] h-[22px] shrink-0"
-                        />
-                        <span className="text-[14px] text-[var(--color-ink)] sm:text-[15px] leading-[22px]">
-                          {f}
+                  {/* Features List */}
+                  <ul className="space-y-3.5 mb-8">
+                    {features.map((feature, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <div className="w-5 h-5 rounded-full bg-[#D1F4E0] text-[#047857] flex items-center justify-center shrink-0 mt-0.5">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="12"
+                            height="12"
+                            viewBox="0 0 12 12"
+                            fill="none"
+                          >
+                            <path
+                              d="M10 3L4.5 8.5L2 6"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </div>
+                        <span className="text-sm font-medium text-neutral-700 leading-snug">
+                          {feature}
                         </span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* CTA */}
-                <div className="p-5 sm:p-6 lg:p-7">
+                {/* Action Button & Footer Subtext */}
+                <div>
                   <a
                     target="_blank"
-                    href={getPlanCtaHref(plan, dashboardUrl)}
-                    className={`btn-cta flex h-14 items-center justify-center rounded-full text-[15px] font-medium sm:h-16 sm:text-[16px] ${
-                      isPrimary
-                        ? "btn-cta--primary text-white"
-                        : "btn-cta--outline border-[1.5px] border-[var(--color-brand-deep)] text-[var(--color-brand-deep)]"
+                    href={ctaHref}
+                    className={`w-full font-semibold py-3.5 px-6 rounded-full transition-all duration-200 flex items-center justify-center gap-1.5 text-sm cursor-pointer ${
+                      isHighlighted
+                        ? "bg-[#064E3B] text-white hover:bg-[#043D2E] shadow-sm"
+                        : "bg-[#D1F4E0] text-[#064E3B] hover:bg-[#BBF0D3]"
                     }`}
                   >
-                    <span className="btn-cta__inner">
-                      <span className="btn-cta__text">
-                        <span>{plan.cta.label}</span>
-                        <span className="btn-arrow">
-                          <ChevronRight width={18} height={18} />
-                        </span>
-                      </span>
-                    </span>
+                    <span>{plan.cta?.label || "Start Free"}</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
                   </a>
+
+                  {/* Subtext below button */}
+                  <p className="text-xs text-neutral-500 text-center mt-3 font-normal">
+                    Free 14-day trial · No card
+                  </p>
                 </div>
               </div>
             );

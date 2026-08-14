@@ -23,6 +23,8 @@ export interface PricingPlan {
   /** `url` lets the API override the CTA target per plan (e.g. per country). */
   cta: { label: string; type: string; url?: string };
   highlight: boolean;
+  isPopular?: boolean;
+  yearlyOfferPercentage?: number | null;
   customPricingLabel?: string;
   trialDays?: number | null;
   order?: number;
@@ -106,6 +108,8 @@ const bdFallbackPlans: PricingPlan[] = [
     ],
     cta: { label: "Purchase Now", type: "primary" },
     highlight: true,
+    isPopular: true,
+    yearlyOfferPercentage: 20,
     maxUsers: 5,
     reviewsPerMonth: 900,
     order: 2,
@@ -180,6 +184,8 @@ const globalFallbackPlans: PricingPlan[] = [
     ],
     cta: { label: "Start Free Trial", type: "primary" },
     highlight: true,
+    isPopular: true,
+    yearlyOfferPercentage: 20,
     maxUsers: 3,
     reviewsPerMonth: 300,
     order: 2,

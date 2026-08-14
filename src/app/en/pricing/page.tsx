@@ -31,7 +31,10 @@ export default async function PricingPageEn() {
         <RegionGuard allow={["eur", "global"]} redirectTo="/pricing" />
         <Navbar />
         <main className="flex-1">
-          <PageBanner breadcrumb="Pricing" title="Simple, Transparent Pricing" />
+          <PageBanner
+            breadcrumb="Pricing"
+            title="Simple, Transparent Pricing"
+          />
           <PricingPlansEn
             plans={plans}
             initialRegion={region}

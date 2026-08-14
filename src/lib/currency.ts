@@ -82,11 +82,28 @@ export function isCustomPlan(plan: PricingPlan): boolean {
 }
 
 /**
- * Destination for a plan's CTA. Prefers a per-plan URL from the API — that is
- * the hook a country-specific dashboard link would come through — and falls
- * back to the single dashboard origin from the environment.
+ * Destination for a plan's CTA. For BD paid plans, routes directly to WhatsApp.
+ * Prefers a per-plan URL from the API, and falls back to the dashboard origin.
  */
-export function getPlanCtaHref(plan: PricingPlan, dashboardUrl: string): string {
+export function getPlanCtaHref(
+  plan: PricingPlan,
+  dashboardUrl: string,
+  billingCycle: BillingCycle = "yearly",
+): string {
+  if (plan.market === "bd" && !isFreePlan(plan)) {
+    const phoneNumber = "8801727707820";
+    const cycleText =
+      billingCycle === "yearly"
+        ? "Yearly"
+        : billingCycle === "half-yearly"
+          ? "Half-Yearly"
+          : "Monthly";
+    const message = encodeURIComponent(
+      `Hi, I'm interested in purchasing the ${plan.name} plan (${cycleText}).`,
+    );
+    return `https://wa.me/${phoneNumber}?text=${message}`;
+  }
+
   const planUrl = plan.cta?.url?.trim();
   if (planUrl) return planUrl;
   const origin = dashboardUrl.trim().replace(/\/+$/, "");
