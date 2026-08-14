@@ -28,7 +28,7 @@ export default function Home() {
         <SoftwareSection />
         <PricingTable />
         <HurtingSection />
-        <InfographSection />
+        {/* <InfographSection /> */}
         <div id="how" className="scroll-mt-20">
           <StepsSection />
         </div>
