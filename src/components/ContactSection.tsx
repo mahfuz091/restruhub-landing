@@ -4,14 +4,14 @@ const locations = [
   {
     icon: "/images/contact/icon-usa.svg",
     title: "USA",
-    address: "1309 Coffeen Avenue STE 1200, Sheridan, Wyoming 82801",
-    phone: "+12325 66545842",
+    address: "750 W Dimond Blvd Ste 103 #204, Anchorage, Alaska 99515, United States",
+    phone: "+1 929 6072389",
   },
   {
     icon: "/images/contact/icon-portugal.svg",
     title: "Portugal",
-    address: "1309 Coffeen Avenue STE 1200, Sheridan, Wyoming 82801",
-    phone: "+12325 66545842",
+    address: "R. Unidade 9, 2830-055 Barreiro, Portugal",
+    phone: "+351 937 29 6113",
   },
   {
     icon: "/images/contact/icon-dhaka.svg",
